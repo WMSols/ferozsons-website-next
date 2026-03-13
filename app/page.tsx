@@ -5,6 +5,13 @@ import { ArrowRight } from "lucide-react";
 import CTABanner from "@/components/layout/CTABanner";
 import { articles } from "@/data/articles";
 import { timelineEvents } from "@/data/partnerships";
+import { HeroImageZoom } from "@/components/animations/HeroImageZoom";
+import { StaggerFadeUp } from "@/components/animations/StaggerFadeUp";
+import { ButtonMotion } from "@/components/animations/ButtonMotion";
+import { StaggerGrid } from "@/components/animations/StaggerGrid";
+import { TimelineItemSlide } from "@/components/animations/TimelineItemSlide";
+import { QuoteReveal } from "@/components/animations/QuoteReveal";
+import { StaggerFadeUpInView } from "@/components/animations/StaggerFadeUpInView";
 
 export const metadata = {
   title: "Feroz Sons",
@@ -20,35 +27,39 @@ export default function HomePage() {
       <section className="mx-4 mt-4 lg:mx-6 lg:mt-6 border border-hero-border rounded-t-lg rounded-b-[2rem] overflow-hidden shadow-sm bg-background">
         <div className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 py-20 md:px-12 md:py-24 lg:px-16 lg:py-28">
           <div className="absolute inset-0">
-            <img
-              src="/hero.jpg"
-              alt="Ferozsons Laboratories"
-              className="w-full h-full object-cover object-center"
-            />
+            <HeroImageZoom>
+              <img
+                src="/hero.jpg"
+                alt="Ferozsons Laboratories"
+                className="w-full h-full object-cover object-center"
+              />
+            </HeroImageZoom>
             <div
               className="absolute inset-0 bg-gradient-to-b from-hero-overlay/80 via-hero-overlay/60 to-hero-overlay/40"
               aria-hidden
             />
           </div>
-          <div className="container relative z-10 flex flex-col items-center text-center">
+          <StaggerFadeUp className="container relative z-10 flex flex-col items-center text-center">
             <h1 className="font-serif text-4xl font-bold leading-tight text-hero-heading sm:text-5xl md:text-6xl lg:text-[3.5rem] max-w-4xl">
               Putting Patients First
             </h1>
             <p className="mt-6 max-w-3xl text-xl font-normal leading-relaxed text-hero-body md:text-2xl">
               A patient-centric pharmaceutical company committed to advancing care by addressing critical unmet medical needs in Pakistan and internationally.
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="mt-10 rounded-full bg-hero-cta px-8 py-3 text-base font-semibold text-hero-cta-foreground hover:opacity-90"
-            >
-              <Link href="/about">Learn more</Link>
-            </Button>
+            <ButtonMotion>
+              <Button
+                asChild
+                size="lg"
+                className="mt-10 rounded-full bg-hero-cta px-8 py-3 text-base font-semibold text-hero-cta-foreground hover:opacity-90"
+              >
+                <Link href="/about">Learn more</Link>
+              </Button>
+            </ButtonMotion>
             <p className="mt-20 max-w-2xl text-lg font-normal text-hero-heading md:text-xl">
               Reach New Peaks With{" "}
               <span className="font-semibold text-hero-accent">Ferozsons</span>
             </p>
-          </div>
+          </StaggerFadeUp>
         </div>
       </section>
 
@@ -77,7 +88,7 @@ export default function HomePage() {
           </div>
 
           {/* 2. CONTENT LAYER (Relative z-10) */}
-          <div className="container relative z-10 flex flex-col items-center text-center">
+          <StaggerFadeUpInView className="container relative z-10 flex flex-col items-center text-center">
             
             {/* Section Header */}
             <h2 className="mb-6 md:mb-8 text-sm md:text-base font-semibold text-foreground tracking-wide">
@@ -95,13 +106,15 @@ export default function HomePage() {
             </p>
 
             {/* Primary Button */}
-            <Button
-              asChild
-              size="lg"
-              className="rounded-full bg-mission-cta px-8 py-6 text-base font-semibold text-mission-cta-foreground hover:opacity-90 transition-opacity"
-            >
-              <Link href="/about">Missions, Strategy & Values</Link>
-            </Button>
+            <ButtonMotion>
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full bg-mission-cta px-8 py-6 text-base font-semibold text-mission-cta-foreground hover:opacity-90 transition-opacity"
+              >
+                <Link href="/about">Missions, Strategy & Values</Link>
+              </Button>
+            </ButtonMotion>
 
             {/* Text Link */}
             <Link
@@ -111,7 +124,7 @@ export default function HomePage() {
               Why invest in Ferozsons?
             </Link>
 
-          </div>
+          </StaggerFadeUpInView>
         </div>
       </section>
 
@@ -121,20 +134,22 @@ export default function HomePage() {
         <div className="container">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-2xl md:text-3xl font-bold">Latest Articles</h2>
-            <Button variant="outline" asChild className="rounded-full">
-              <Link href="/newsroom">
-                View All <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <ButtonMotion>
+              <Button variant="outline" asChild className="rounded-full">
+                <Link href="/newsroom">
+                  View All <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </ButtonMotion>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {latestArticles.map((article) => (
               <Card
                 key={article.id}
-                className="overflow-hidden hover:shadow-md transition-shadow"
+                className="flex h-full flex-col overflow-hidden hover:shadow-md transition-shadow"
               >
-                <div className="h-48 bg-muted" />
-                <CardContent className="pt-6">
+                <div className="h-48 shrink-0 bg-muted" />
+                <CardContent className="flex flex-1 flex-col pt-6">
                   <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
                     {article.category}
                   </p>
@@ -146,14 +161,14 @@ export default function HomePage() {
                   </p>
                   <Link
                     href="/newsroom"
-                    className="inline-flex items-center text-sm text-primary font-medium mt-4 hover:underline"
+                    className="mt-auto inline-flex items-center text-sm text-primary font-medium pt-4 hover:underline"
                   >
                     Read More <ArrowRight className="ml-1 h-3 w-3" />
                   </Link>
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
@@ -182,13 +197,15 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
-            <Button
-              asChild
-              variant="outline"
-              className="rounded-full border-2 border-foreground/40 bg-transparent text-primary hover:bg-foreground/5 shrink-0"
-            >
-              <Link href="/products">Explore Our Complete Portfolio</Link>
-            </Button>
+            <ButtonMotion>
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-full border-2 border-foreground/40 bg-transparent text-primary hover:bg-foreground/5 shrink-0"
+              >
+                <Link href="/products">Explore Our Complete Portfolio</Link>
+              </Button>
+            </ButtonMotion>
           </div>
         </div>
       </section>
@@ -202,9 +219,10 @@ export default function HomePage() {
           <div className="relative max-w-3xl mx-auto">
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-primary/20" />
             {timelineEvents.map((event, i) => (
-              <div
+              <TimelineItemSlide
                 key={event.year}
                 className={`relative flex items-start gap-6 mb-10 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                fromLeft={i % 2 === 0}
               >
                 <div className="hidden md:block flex-1" />
                 <div className="relative z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
@@ -219,7 +237,7 @@ export default function HomePage() {
                     {event.description}
                   </p>
                 </div>
-              </div>
+              </TimelineItemSlide>
             ))}
           </div>
         </div>
@@ -228,10 +246,10 @@ export default function HomePage() {
       {/* Legacy Quote */}
       <section className="py-20">
         <div className="container text-center max-w-3xl mx-auto">
-          <blockquote className="text-2xl md:text-3xl font-serif italic text-foreground leading-relaxed">
+          <QuoteReveal className="text-2xl md:text-3xl font-serif italic text-foreground leading-relaxed">
             &quot;Our commitment to patients goes beyond medicine — it&apos;s a promise to
             contribute to a healthier, more empowered Pakistan.&quot;
-          </blockquote>
+          </QuoteReveal>
         </div>
       </section>
 
