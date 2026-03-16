@@ -15,7 +15,8 @@ import { StaggerFadeUpInView } from "@/components/animations/StaggerFadeUpInView
 
 export const metadata = {
   title: "Feroz Sons",
-  description: "Pakistan's leading pharmaceutical company, committed to quality healthcare since 1956.",
+  description:
+    "Pakistan's leading pharmaceutical company, committed to quality healthcare since 1956.",
 };
 
 export default function HomePage() {
@@ -44,7 +45,9 @@ export default function HomePage() {
               Putting Patients First
             </h1>
             <p className="mt-6 max-w-3xl text-xl font-normal leading-relaxed text-hero-body md:text-2xl">
-              A patient-centric pharmaceutical company committed to advancing care by addressing critical unmet medical needs in Pakistan and internationally.
+              A patient-centric pharmaceutical company committed to advancing
+              care by addressing critical unmet medical needs in Pakistan and
+              internationally.
             </p>
             <ButtonMotion>
               <Button
@@ -67,7 +70,6 @@ export default function HomePage() {
       <section className="mx-4 mt-8 lg:mx-6 lg:mt-12 border border-border rounded-[2rem] overflow-hidden shadow-sm bg-background">
         {/* The relative wrapper that acts as the boundary for the absolute background */}
         <div className="relative flex flex-col items-center justify-center px-6 py-16 md:px-12 md:py-24 lg:px-16 lg:py-32">
-          
           {/* 1. BACKGROUND LAYER (Absolute) */}
           <div className="absolute inset-0 pointer-events-none">
             {/* The blue cellular pattern. 
@@ -81,15 +83,14 @@ export default function HomePage() {
             {/* A gradient mask. This ensures the left side of the card stays solid 
               so the text remains perfectly readable, while the right side fades to show the image. 
             */}
-            <div 
-              className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent" 
-              aria-hidden 
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent"
+              aria-hidden
             />
           </div>
 
           {/* 2. CONTENT LAYER (Relative z-10) */}
           <StaggerFadeUpInView className="container relative z-10 flex flex-col items-center text-center">
-            
             {/* Section Header */}
             <h2 className="mb-6 md:mb-8 text-sm md:text-base font-semibold text-foreground tracking-wide">
               Our Mission
@@ -97,12 +98,18 @@ export default function HomePage() {
 
             {/* Main Headline - Max-width widened significantly, font size increased, font weight bolded */}
             <h3 className="mb-8 md:mb-10 max-w-[1000px] text-2xl font-bold leading-relaxed text-foreground sm:text-3xl md:text-4xl lg:text-[2.5rem] lg:leading-snug">
-              We are a leading healthcare company driven by a commitment to patients, quality, and progress. Through innovation, global collaborations, and responsible growth, we strive to improve health outcomes, address unmet medical needs, and strengthen healthcare systems in the markets we serve.
+              We are a leading healthcare company driven by a commitment to
+              patients, quality, and progress. Through innovation, global
+              collaborations, and responsible growth, we strive to improve
+              health outcomes, address unmet medical needs, and strengthen
+              healthcare systems in the markets we serve.
             </h3>
 
             {/* Sub-paragraph */}
             <p className="mb-10 md:mb-12 max-w-4xl text-base font-normal leading-relaxed text-muted-foreground md:text-lg">
-              Our Medical Technologies division operates through alliances with five globally renowned partners, delivering advanced medical devices across key specialties.
+              Our Medical Technologies division operates through alliances with
+              five globally renowned partners, delivering advanced medical
+              devices across key specialties.
             </p>
 
             {/* Primary Button */}
@@ -123,11 +130,9 @@ export default function HomePage() {
             >
               Why invest in Ferozsons?
             </Link>
-
           </StaggerFadeUpInView>
         </div>
       </section>
-
 
       {/* Latest Articles */}
       <section className="bg-secondary py-20">
@@ -172,14 +177,16 @@ export default function HomePage() {
         </div>
       </section>
 
-{/* Products section */}
-<section className="w-full py-16 md:py-24 bg-product-bg">
+      {/* Products section */}
+      <section className="w-full py-16 md:py-24 bg-product-bg">
         <div className="container mx-auto px-4 md:px-8 flex flex-col items-start text-left">
           <h2 className="text-sm font-bold font-sans text-foreground mb-4 md:mb-6">
             Products
           </h2>
           <h3 className="font-serif text-2xl md:text-4xl lg:text-[2.75rem] font-bold leading-tight text-foreground max-w-[800px]">
-            Across a portfolio of over 140 products, every medicine reflects our commitment to quality and patient care, supported by over 1,000 professionals.
+            Across a portfolio of over 140 products, every medicine reflects our
+            commitment to quality and patient care, supported by over 1,000
+            professionals.
           </h3>
           <div className="flex flex-col md:flex-row items-center gap-6 mt-12 w-full max-w-4xl">
             <div className="flex items-center gap-2 flex-1 w-full md:w-auto border-b border-foreground/30 min-w-0">
@@ -243,12 +250,68 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Legacy & Social Responsibility - full-width, same layering as Hero */}
+      <section className="w-full">
+        <div className="relative min-h-[60vh] flex flex-col items-center justify-center px-6 py-20 md:px-12 md:py-24 lg:px-16 lg:py-28">
+          <div className="absolute inset-0">
+            <img
+              src="/legacy-bg.png"
+              alt=""
+              className="w-full h-full object-cover object-center"
+              aria-hidden
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50"
+              aria-hidden
+            />
+          </div>
+          <div className="container relative z-10 flex flex-col items-start text-left mx-auto">
+            <div className="flex items-center gap-3 mb-8 md:mb-10">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white font-serif text-xl italic text-white">
+                f
+              </div>
+              <div className="flex flex-col font-sans text-[10px] font-bold uppercase leading-tight tracking-wider text-white">
+                <span>People</span>
+                <span>Trust</span>
+                <span>Us</span>
+              </div>
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-4xl">
+              Our legacy is built on{" "}
+              <span className="text-hero-accent">integrity,</span>{" "}
+              <span className="text-hero-accent">quality,</span> and{" "}
+              <span className="text-hero-accent">patient-first</span> care.
+            </h2>
+            <p className="mt-6 max-w-xl text-base md:text-lg font-normal leading-relaxed text-white">
+              Ferozsons Laboratories Limited invests in medical and public
+              education to advance disease awareness, prevention, and equitable
+              access to healthcare for underserved communities.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="mt-10 h-auto w-full min-w-0 sm:w-auto rounded-full bg-primary px-6 py-4 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-primary-foreground hover:opacity-90"
+            >
+              <Link
+                href="/about"
+                className="flex flex-col items-center justify-center gap-y-2 min-w-0 sm:flex-row sm:gap-x-2 sm:justify-start"
+              >
+                <span className="whitespace-normal text-center sm:text-left">
+                  View Our Social Responsibility Initiatives
+                </span>
+                <ArrowRight className="h-4 w-4 shrink-0" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Legacy Quote */}
       <section className="py-20">
         <div className="container text-center max-w-3xl mx-auto">
           <QuoteReveal className="text-2xl md:text-3xl font-serif italic text-foreground leading-relaxed">
-            &quot;Our commitment to patients goes beyond medicine — it&apos;s a promise to
-            contribute to a healthier, more empowered Pakistan.&quot;
+            &quot;Our commitment to patients goes beyond medicine — it&apos;s a
+            promise to contribute to a healthier, more empowered Pakistan.&quot;
           </QuoteReveal>
         </div>
       </section>
