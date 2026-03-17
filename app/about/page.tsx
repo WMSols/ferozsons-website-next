@@ -1,5 +1,7 @@
+import Link from "next/link";
 import PageHero from "@/components/layout/PageHero";
 import CTABanner from "@/components/layout/CTABanner";
+import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: "About Us",
@@ -21,6 +23,14 @@ export default function AboutPage() {
             <p className="text-muted-foreground leading-relaxed mb-6">
               Our founder, the late Mr. Khalid Waheed, envisioned a company that would not only manufacture world-class pharmaceutical products but also contribute meaningfully to the health and well-being of Pakistani society. That vision continues to guide us today.
             </p>
+            <div className="flex flex-wrap gap-3 mt-4">
+              <Button asChild variant="outline" className="rounded-full">
+                <Link href="/about/history">Our History</Link>
+              </Button>
+              <Button asChild variant="outline" className="rounded-full">
+                <Link href="/about/company-overview">Company Overview</Link>
+              </Button>
+            </div>
 
             <h2 className="text-2xl font-bold mb-6 mt-12">Mission & Vision</h2>
             <div className="grid md:grid-cols-2 gap-8 mb-12">

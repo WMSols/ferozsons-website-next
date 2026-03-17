@@ -8,6 +8,12 @@ export const mainNavItems: NavItem[] = [
   {
     label: "About Us",
     href: "/about",
+    children: [
+      { label: "History", href: "/about/history" },
+      { label: "Company Overview", href: "/about/company-overview" },
+      { label: "Purpose", href: "/about/purpose" },
+      { label: "Message from the CEO", href: "/about/ceo-message" },
+    ],
   },
   {
     label: "Products",
@@ -16,7 +22,10 @@ export const mainNavItems: NavItem[] = [
       { label: "Hepatology", href: "/products?category=Hepatology" },
       { label: "Cardiovascular", href: "/products?category=Cardiovascular" },
       { label: "Anti-Infectives", href: "/products?category=Anti-Infectives" },
-      { label: "Gastroenterology", href: "/products?category=Gastroenterology" },
+      {
+        label: "Gastroenterology",
+        href: "/products?category=Gastroenterology",
+      },
       { label: "Neurology", href: "/products?category=Neurology" },
       { label: "Oncology", href: "/products?category=Oncology" },
       { label: "Pain Management", href: "/products?category=Pain+Management" },

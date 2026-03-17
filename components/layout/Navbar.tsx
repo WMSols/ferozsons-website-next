@@ -14,7 +14,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-4 lg:px-6 lg:pt-6">
+    <header className="sticky top-0 z-50 relative px-4 pt-4 lg:px-6 lg:pt-6">
       {/* Single white rounded bar - desktop */}
       <div className="hidden lg:block rounded-[20px] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
         <div className="flex items-center justify-between gap-8 px-8 py-4">
@@ -117,9 +117,17 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu: overlay so it doesn't push content down */}
       {mobileOpen && (
-        <div className="lg:hidden mt-2 rounded-[20px] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.08)] border border-[#CCCCCC]/30 overflow-hidden">
+        <>
+          <button
+            type="button"
+            className="lg:hidden fixed inset-0 z-40 bg-black/20"
+            aria-label="Close menu"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="lg:hidden absolute top-full left-0 right-0 mt-2 z-50 px-4">
+            <div className="rounded-[20px] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.08)] border border-[#CCCCCC]/30 overflow-hidden">
           <div className="px-4 py-4 space-y-1">
             {mainNavItems.map((item) => (
               <div key={item.href}>
@@ -176,7 +184,9 @@ const Navbar = () => {
               ))}
             </div>
           </div>
-        </div>
+            </div>
+          </div>
+        </>
       )}
     </header>
   );
