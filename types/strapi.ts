@@ -1,0 +1,84 @@
+export interface StrapiPagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+export interface StrapiProductCategory {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+}
+
+export interface StrapiCategoriesResponse {
+  data: StrapiProductCategory[];
+  meta: {
+    pagination: StrapiPagination;
+  };
+}
+
+export interface StrapiProduct {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  formulation?: string;
+  concentration?: string;
+  dosage?: string;
+  volumeOptions?: string[];
+  keyFeatures?: string;
+  prescriptionRequired?: boolean;
+  commonlyPrescribed?: boolean | null;
+  product_category?: {
+    id: number;
+    name: string;
+    slug: string;
+  };
+  image?: {
+    url: string;
+  };
+}
+
+export interface StrapiProductsResponse {
+  data: StrapiProduct[];
+  meta: {
+    pagination: StrapiPagination;
+  };
+}
+
+/** Strapi Blocks / Rich Text node (e.g. for description). */
+export interface StrapiBlockTextChild {
+  type: "text";
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+}
+
+export interface StrapiBlockParagraph {
+  type: "paragraph";
+  children: StrapiBlockTextChild[];
+}
+
+export type StrapiBlock = StrapiBlockParagraph;
+
+/** Single product from Strapi (e.g. by slug) with full populate. */
+export interface StrapiProductDetail extends StrapiProduct {
+  description?: StrapiBlock[];
+  availableOnline?: boolean | null;
+  buyLink?: string | null;
+  instructionsPdf?: {
+    name: string;
+    url: string;
+  };
+  pamphletPdf?: {
+    name: string;
+    url: string;
+  };
+}

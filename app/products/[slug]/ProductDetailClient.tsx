@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ShoppingCart } from "lucide-react";
+import { ArrowLeft, ShoppingCart, FileText, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
@@ -13,15 +13,27 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import type { Product } from "@/data/products";
+import { getStrapiImageUrl, getStrapiMediaUrl } from "@/lib/strapi";
+import { strapiBlocksToHtml } from "@/lib/strapi-blocks";
+import type { StrapiProductDetail } from "@/types/strapi";
 
-export default function ProductDetailClient({ product }: { product: Product }) {
+export default function ProductDetailClient({
+  product,
+}: {
+  product: StrapiProductDetail;
+}) {
   const [selectedSize, setSelectedSize] = useState(0);
-  const selectedSizeLabel = product.sizes[selectedSize] ?? product.sizes[0];
+  const volumeOptions = product.volumeOptions ?? [];
+  const selectedSizeLabel = volumeOptions[selectedSize] ?? volumeOptions[0] ?? product.dosage ?? "";
+
+  const imageUrl = getStrapiImageUrl(product.image?.url);
+  const categoryName = product.product_category?.name ?? "";
+  const descriptionHtml = strapiBlocksToHtml(product.description);
+  const instructionsPdfUrl = getStrapiMediaUrl(product.instructionsPdf?.url);
+  const pamphletPdfUrl = getStrapiMediaUrl(product.pamphletPdf?.url);
 
   return (
     <>
-      {/* Compact top: breadcrumbs only */}
       <section className="bg-secondary py-6 md:py-8">
         <div className="container">
           <Breadcrumb>
@@ -52,53 +64,55 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         </div>
       </section>
 
-      {/* Main title on light grey background, above white container */}
-      
-
       <section className="py-8 md:py-12 bg-secondary">
         <div className="container max-w-6xl mx-auto px-4">
-          {/* Main container: 2-column layout, 60% image / 40% cards */}
           <div className="bg-background rounded-3xl overflow-hidden shadow-sm">
             <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10 lg:gap-12 p-6 md:p-8 lg:p-10">
-              {/* Left column (~60%): product image in soft light gray container */}
-              <div className="relative w-full min-h-[280px] lg:min-h-0 aspect-square flex items-center justify-center rounded-2xl lg:rounded-3xl bg-[#eef0f4] p-8 md:p-10">
-                {product.image ? (
+              <div className="relative w-full aspect-square overflow-hidden rounded-2xl lg:rounded-3xl bg-[#eef0f4] shadow-lg">
+                {imageUrl ? (
                   <Image
-                    src={product.image}
+                    src={imageUrl}
                     alt={product.name}
-                    width={700}
-                    height={700}
-                    className="object-contain w-full h-full"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    unoptimized
                   />
                 ) : (
-                  <span className="text-8xl font-bold text-primary/10">
+                  <span className="absolute inset-0 flex items-center justify-center text-8xl font-bold text-primary/10">
                     {product.name.charAt(0)}
                   </span>
                 )}
               </div>
 
-              {/* Right column (~40%): two cards stacked */}
               <div className="flex flex-col gap-4 lg:gap-6">
-                {/* Top card – Product info (white, large radius, shadow) */}
                 <div className="bg-white rounded-3xl p-8 shadow-md">
                   <h2 className="font-sans text-xl md:text-2xl font-bold text-foreground mb-2 md:mb-3">
-                    {product.name} - {selectedSizeLabel}
+                    {product.name}
+                    {selectedSizeLabel && ` - ${selectedSizeLabel}`}
                   </h2>
-                  <p className="font-sans text-sm text-gray-500 uppercase mb-1 md:mb-2">
-                    {product.category}
-                  </p>
+                  {categoryName && (
+                    <p className="font-sans text-sm text-gray-500 uppercase mb-1 md:mb-2">
+                      {categoryName}
+                    </p>
+                  )}
                   <p className="font-sans text-sm text-foreground mb-6 md:mb-8">
-                    {product.dosage}
+                    {product.dosage ?? product.concentration ?? product.formulation ?? ""}
                   </p>
-                  <Link
-                    href="#"
-                    className="flex items-center justify-center gap-2 w-full rounded-full py-3 bg-[#3b6a9e] hover:bg-[#345d8a] text-white font-medium transition-colors"
-                  >
-                    <ShoppingCart className="h-4 w-4" /> Order Online
-                  </Link>
+                  {product?.availableOnline === true &&
+                    typeof product?.buyLink === "string" &&
+                    product.buyLink.trim() !== "" && (
+                      <a
+                        href={product.buyLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 w-full rounded-full py-3 bg-[#3b6a9e] hover:bg-[#345d8a] text-white font-medium transition-colors"
+                      >
+                        <ShoppingCart className="h-4 w-4" /> Order Online
+                      </a>
+                    )}
                 </div>
 
-                {/* Bottom card – Resources (solid blue, three button variants) */}
                 <div className="rounded-3xl p-8 bg-[#3b6a9e] flex flex-col gap-4">
                   <Link
                     href="#"
@@ -106,30 +120,56 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   >
                     FAQs
                   </Link>
-                  <Link
-                    href="#"
-                    className="w-full rounded-full py-3 px-4 text-center font-medium bg-white text-foreground hover:bg-gray-100 transition-colors"
-                  >
-                    Instructions For Use
-                  </Link>
-                  <Link
-                    href="#"
-                    className="w-full rounded-full py-3 px-4 text-center font-medium bg-white text-foreground hover:bg-gray-100 transition-colors"
-                  >
-                    Product Information Pamphlet
-                  </Link>
+                  {instructionsPdfUrl ? (
+                    <a
+                      href={instructionsPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full rounded-full py-3 px-4 text-center font-medium bg-white text-foreground hover:bg-gray-100 transition-colors"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Instructions For Use
+                      <Download className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    <Link
+                      href="#"
+                      className="w-full rounded-full py-3 px-4 text-center font-medium bg-white text-foreground hover:bg-gray-100 transition-colors"
+                    >
+                      Instructions For Use
+                    </Link>
+                  )}
+                  {pamphletPdfUrl ? (
+                    <a
+                      href={pamphletPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full rounded-full py-3 px-4 text-center font-medium bg-white text-foreground hover:bg-gray-100 transition-colors"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Product Information Pamphlet
+                      <Download className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    <Link
+                      href="#"
+                      className="w-full rounded-full py-3 px-4 text-center font-medium bg-white text-foreground hover:bg-gray-100 transition-colors"
+                    >
+                      Product Information Pamphlet
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom section: heading + size pills + description (outside white container) */}
           <div className="max-w-6xl mt-12">
-            
-            <p className="text-sm text-muted-foreground mb-4">{product.dosage}</p>
-            {product.sizes.length > 1 && (
+            <p className="text-sm text-muted-foreground mb-4">
+              {product.dosage ?? product.concentration ?? product.formulation ?? ""}
+            </p>
+            {volumeOptions.length > 1 && (
               <div className="flex flex-wrap gap-2 mb-6">
-                {product.sizes.map((size, i) => (
+                {volumeOptions.map((size, i) => (
                   <Button
                     key={size}
                     variant={selectedSize === i ? "default" : "outline"}
@@ -142,9 +182,18 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 ))}
               </div>
             )}
-            <p className="text-muted-foreground leading-relaxed">
-              {product.description}
-            </p>
+            {descriptionHtml ? (
+              <div
+                className="text-muted-foreground leading-relaxed prose prose-sm max-w-none prose-p:mb-3"
+                dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+              />
+            ) : (
+              product.keyFeatures && (
+                <p className="text-muted-foreground leading-relaxed">
+                  {product.keyFeatures}
+                </p>
+              )
+            )}
           </div>
 
           <div className="mt-12">

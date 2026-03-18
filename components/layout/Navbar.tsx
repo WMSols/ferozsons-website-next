@@ -3,15 +3,52 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
-import { mainNavItems, secondaryNavItems } from "@/data/navigation";
+import {
+  mainNavItems,
+  PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL,
+  secondaryNavItems,
+} from "@/data/navigation";
+import { getCategoriesUrl, strapiFetch } from "@/lib/strapi";
 import { cn } from "@/lib/utils";
+import type { StrapiCategoriesResponse } from "@/types/strapi";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+
+  const categoriesQuery = useQuery({
+    queryKey: ["product-categories"],
+    queryFn: async (): Promise<StrapiCategoriesResponse> => {
+      const res = await strapiFetch(getCategoriesUrl());
+      return res.json();
+    },
+  });
+
+  const productCategories = categoriesQuery.data?.data ?? [];
+
+  const navItems = mainNavItems.map((item) => {
+    if (item.label !== "Products" || !item.children?.length) return item;
+
+    const hasPlaceholder = item.children.some(
+      (c) => c.label === PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL
+    );
+    if (!hasPlaceholder) return item;
+
+    const dynamicChildren = productCategories.map((cat) => ({
+      label: cat.name,
+      href: `/products?category=${encodeURIComponent(cat.slug)}`,
+    }));
+
+    const viewAll = item.children.filter(
+      (c) => c.label !== PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL
+    );
+
+    return { ...item, children: [...dynamicChildren, ...viewAll] };
+  });
 
   return (
     <header className="sticky top-0 z-50 relative px-4 pt-4 lg:px-6 lg:pt-6">
@@ -31,7 +68,7 @@ const Navbar = () => {
 
           {/* Primary nav - center-left with 32px gap */}
           <nav className="flex items-center gap-8 flex-1 justify-start pl-8">
-            {mainNavItems.map((item) => (
+            {navItems.map((item) => (
               <div
                 key={item.href}
                 className="relative"
@@ -129,7 +166,7 @@ const Navbar = () => {
           <div className="lg:hidden absolute top-full left-0 right-0 mt-2 z-50 px-4">
             <div className="rounded-[20px] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.08)] border border-[#CCCCCC]/30 overflow-hidden">
           <div className="px-4 py-4 space-y-1">
-            {mainNavItems.map((item) => (
+            {navItems.map((item) => (
               <div key={item.href}>
                 {item.children ? (
                   <>

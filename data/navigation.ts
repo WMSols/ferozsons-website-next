@@ -4,6 +4,8 @@ export interface NavItem {
   children?: NavItem[];
 }
 
+export const PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL = "Products__DynamicCategories";
+
 export const mainNavItems: NavItem[] = [
   {
     label: "About Us",
@@ -19,17 +21,8 @@ export const mainNavItems: NavItem[] = [
     label: "Products",
     href: "/products",
     children: [
-      { label: "Hepatology", href: "/products?category=Hepatology" },
-      { label: "Cardiovascular", href: "/products?category=Cardiovascular" },
-      { label: "Anti-Infectives", href: "/products?category=Anti-Infectives" },
-      {
-        label: "Gastroenterology",
-        href: "/products?category=Gastroenterology",
-      },
-      { label: "Neurology", href: "/products?category=Neurology" },
-      { label: "Oncology", href: "/products?category=Oncology" },
-      { label: "Pain Management", href: "/products?category=Pain+Management" },
-      { label: "Respiratory", href: "/products?category=Respiratory" },
+      // Replaced at runtime in `components/layout/Navbar.tsx` with categories from Strapi.
+      { label: PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL, href: "/products" },
       { label: "View All Products", href: "/products" },
     ],
   },

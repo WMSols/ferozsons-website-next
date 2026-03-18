@@ -1,35 +1,45 @@
+import { cache } from "react";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { products } from "@/data/products";
+import { getProductBySlugUrl, strapiFetch } from "@/lib/strapi";
+import type { StrapiProductDetail } from "@/types/strapi";
 import ProductDetailClient from "./ProductDetailClient";
 
-export async function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
-}
+const fetchProductBySlug = cache(
+  async (slug: string): Promise<StrapiProductDetail | null> => {
+    const url = getProductBySlugUrl(slug);
+    const res = await strapiFetch(url);
+    const json = (await res.json()) as { data?: StrapiProductDetail[] };
+    return json.data?.[0] ?? null;
+  }
+);
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = await fetchProductBySlug(slug);
   if (!product) return { title: "Product Not Found" };
   return {
     title: product.name,
-    description: product.description,
+    description:
+      product.keyFeatures ??
+      product.formulation ??
+      product.concentration ??
+      undefined,
   };
 }
 
-export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = await fetchProductBySlug(slug);
   if (!product) {
-    return (
-      <div className="container py-20 text-center">
-        <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-        <Button asChild variant="outline" className="rounded-full">
-          <Link href="/products">Return to Products</Link>
-        </Button>
-      </div>
-    );
+    notFound();
   }
   return <ProductDetailClient product={product} />;
 }

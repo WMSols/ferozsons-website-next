@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout/Layout";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -32,9 +33,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${merriweather.variable} font-sans antialiased`} suppressHydrationWarning>
         <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <Layout>{children}</Layout>
+          <QueryProvider>
+            <Toaster />
+            <Sonner />
+            <Layout>{children}</Layout>
+          </QueryProvider>
         </TooltipProvider>
       </body>
     </html>
