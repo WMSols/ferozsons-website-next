@@ -126,6 +126,7 @@
   --color-product-bg: hsl(var(--product-bg));
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+  --font-kaisei: "Kaisei Opti", ui-serif, Georgia, serif;
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);

@@ -36,7 +36,7 @@ const therapeuticsData = [
 ];
 
 const Badge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center justify-center px-4 py-1 mx-2 border border-blue-200 rounded-full bg-white text-blue-500 shadow-sm align-middle font-sans text-2xl md:text-4xl">
+  <span className="inline-flex items-center justify-center px-4 py-1 mx-2 border border-blue-200 rounded-full bg-white text-blue-500 shadow-sm align-middle font-kaisei text-2xl md:text-4xl">
     {children}
   </span>
 );
@@ -64,24 +64,24 @@ export default function CompanyOverviewPage() {
             <div className="flex items-center justify-center gap-4 md:gap-6 mb-16 md:mb-24">
               {/* Circular 'f' Icon */}
               <div className="w-16 h-16 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border-2 md:border-[3px] border-white flex items-center justify-center shrink-0">
-                <span className="text-white font-serif italic text-3xl md:text-6xl lg:text-7xl pt-1 pr-1">
+                <span className="text-white font-kaisei italic text-3xl md:text-6xl lg:text-7xl pt-1 pr-1">
                   f
                 </span>
               </div>
 
               {/* Company Name Text */}
               <div className="flex flex-col text-left">
-                <h1 className="text-white font-sans text-4xl md:text-6xl lg:text-[5.5rem] font-normal leading-none mb-1 md:mb-2 tracking-wide">
+                <h1 className="text-white font-kaisei text-4xl md:text-6xl lg:text-[5.5rem] font-normal leading-none mb-1 md:mb-2 tracking-wide">
                   FEROZSONS
                 </h1>
-                <h2 className="text-white font-sans text-lg md:text-2xl lg:text-[2.1rem] font-light leading-none tracking-widest">
+                <h2 className="text-white font-kaisei text-lg md:text-2xl lg:text-[2.1rem] font-light leading-none tracking-widest">
                   LABORATORIES LIMITED
                 </h2>
               </div>
             </div>
 
             {/* Company Overview Subtitle */}
-            <p className="font-sans text-[#5AB2F7] text-2xl md:text-4xl lg:text-5xl font-bold mb-16 md:mb-24">
+            <p className="font-kaisei text-[#5AB2F7] text-2xl md:text-4xl lg:text-5xl font-bold mb-16 md:mb-24">
               Company Overview
             </p>
 
@@ -95,7 +95,7 @@ export default function CompanyOverviewPage() {
         {/* 2. Stats */}
         <section className="bg-white py-16">
           <div className="max-w-6xl mx-auto px-4 text-center">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="font-kaisei text-3xl md:text-4xl font-bold text-gray-900">
               Advancing Healthcare Through Science
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -104,10 +104,10 @@ export default function CompanyOverviewPage() {
                   key={stat.label}
                   className={`py-4 ${i < 2 ? "md:border-r md:border-gray-200" : ""}`}
                 >
-                  <p className="font-sans text-4xl md:text-5xl font-bold text-blue-600">
+                  <p className="font-kaisei text-6xl md:text-6xl font-bold text-blue-600">
                     {stat.number}
                   </p>
-                  <p className="font-sans text-sm text-gray-500 uppercase mt-2">
+                  <p className="font-kaisei text-sm text-gray-500 uppercase mt-2">
                     {stat.label}
                   </p>
                 </div>
@@ -119,7 +119,7 @@ export default function CompanyOverviewPage() {
         {/* 3. Dark intro */}
         <section className="bg-black py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <p className="font-sans text-white text-sm leading-relaxed">
+            <p className="font-kaisei text-white text-xl leading-relaxed font-bold">
               Established in 1954, Ferozsons Laboratories Limited is a public
               limited company that was listed on the Pakistan Stock Exchange
               (formerly the Karachi Stock Exchange) in 1960. Over the past 70
@@ -137,7 +137,7 @@ export default function CompanyOverviewPage() {
         {/* 4. Core values (inline badges) */}
         <section className="bg-gray-50 py-20">
           <div className="max-w-5xl mx-auto px-4 text-center">
-            <p className="font-sans text-3xl md:text-5xl text-gray-900 leading-normal font-medium">
+            <p className="font-kaisei text-3xl md:text-5xl text-gray-900 leading-normal font-bold">
               Our legacy is grounded in <Badge>Integrity</Badge> and reflected
               in the high standards we uphold across our work. We deliver{" "}
               <Badge>Quality</Badge> healthcare solutions that improve lives,
@@ -150,11 +150,11 @@ export default function CompanyOverviewPage() {
         {/* 5. Biotech blue block */}
         <section className="px-4 my-12">
           <div className="bg-blue-600 rounded-[2rem] max-w-6xl mx-auto p-10 md:p-16">
-            <h2 className="font-serif text-2xl md:text-3xl font-bold text-white mb-4">
+            <h2 className="font-kaisei text-2xl md:text-3xl font-bold text-white mb-4">
               Pioneering Biotech Manufacturing and Expanding Pakistan&apos;s
               Pharmaceutical Capabilities
             </h2>
-            <p className="font-sans text-white/95 text-sm md:text-base leading-relaxed max-w-3xl">
+            <p className="font-kaisei text-white/95 text-sm md:text-base leading-relaxed max-w-3xl">
               Through strategic partnerships and sustained investment in
               research and manufacturing, we are expanding Pakistan&apos;s
               capacity to produce advanced biopharmaceuticals and deliver
@@ -162,7 +162,7 @@ export default function CompanyOverviewPage() {
             </p>
             <Link
               href="/about"
-              className="inline-block mt-6 rounded-full border border-white text-white font-sans px-6 py-2 font-medium hover:bg-white/10 transition-colors"
+              className="inline-block mt-6 rounded-full border border-white text-white font-kaisei px-6 py-2 font-medium hover:bg-white/10 transition-colors"
             >
               Learn more
             </Link>
@@ -174,10 +174,10 @@ export default function CompanyOverviewPage() {
           <div className="max-w-6xl mx-auto px-4 space-y-16 md:space-y-24">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
               <div className="flex-1">
-                <h2 className="font-serif text-2xl md:text-3xl font-bold mb-4">
+                <h2 className="font-kaisei text-2xl md:text-3xl font-bold mb-4">
                   A Breakthrough in Hepatitis Treatment Access
                 </h2>
-                <p className="font-sans text-white/90 text-sm leading-relaxed mb-6">
+                <p className="font-kaisei text-white/90 text-sm leading-relaxed mb-6">
                   Our partnership with Gilead Sciences has enabled thousands of
                   patients to access breakthrough hepatitis C treatments, with
                   Pakistan among the first countries to implement the access
@@ -185,7 +185,7 @@ export default function CompanyOverviewPage() {
                 </p>
                 <Link
                   href="/products"
-                  className="inline-block rounded-full bg-blue-600 text-white font-sans px-6 py-2 font-medium hover:bg-blue-700 transition-colors"
+                  className="inline-block rounded-full bg-blue-600 text-white font-kaisei px-6 py-2 font-medium hover:bg-blue-700 transition-colors"
                 >
                   Explore products
                 </Link>
@@ -202,14 +202,14 @@ export default function CompanyOverviewPage() {
             </div>
             <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
               <div className="flex-1">
-                <p className="font-sans text-white/90 text-sm leading-relaxed mb-6">
+                <p className="font-kaisei text-white/90 text-sm leading-relaxed mb-6">
                   We continue to strengthen our portfolio and manufacturing
                   capabilities to meet evolving patient needs and support
                   healthcare systems with reliable, high-quality medicines.
                 </p>
                 <Link
                   href="/about"
-                  className="inline-block rounded-full border border-blue-500 text-blue-500 font-sans px-6 py-2 font-medium hover:bg-blue-500/10 transition-colors"
+                  className="inline-block rounded-full border border-blue-500 text-blue-500 font-kaisei px-6 py-2 font-medium hover:bg-blue-500/10 transition-colors"
                 >
                   Our story
                 </Link>
@@ -230,7 +230,7 @@ export default function CompanyOverviewPage() {
         {/* 7. Therapeutics cards */}
         <section className="bg-gradient-to-b from-white to-blue-50/30 py-16">
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-10">
+            <h2 className="font-kaisei text-2xl md:text-3xl font-bold text-gray-900 mb-10">
               A broad range of pharmaceutical solutions
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -239,7 +239,7 @@ export default function CompanyOverviewPage() {
                   key={label}
                   className="bg-[#3b6a9e] rounded-3xl aspect-square flex flex-col p-6 md:p-8"
                 >
-                  <h3 className="font-sans text-white text-2xl md:text-3xl font-bold text-left w-full">
+                  <h3 className="font-kaisei text-white text-2xl md:text-3xl font-bold text-left w-full">
                     {label}
                   </h3>
 
@@ -298,16 +298,16 @@ export default function CompanyOverviewPage() {
             </div>
             <div className="container relative z-10 flex flex-col items-start text-left mx-auto">
               <div className="flex items-center gap-3 mb-8 md:mb-10">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white font-serif text-xl italic text-white">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white font-kaisei text-xl italic text-white">
                   f
                 </div>
-                <div className="flex flex-col font-sans text-[10px] font-bold uppercase leading-tight tracking-wider text-white">
+                <div className="flex flex-col font-kaisei text-[10px] font-bold uppercase leading-tight tracking-wider text-white">
                   <span>People</span>
                   <span>Trust</span>
                   <span>Us</span>
                 </div>
               </div>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-4xl">
+              <h2 className="font-kaisei text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-4xl">
                 Our legacy is built on{" "}
                 <span className="text-hero-accent">integrity,</span>{" "}
                 <span className="text-hero-accent">quality,</span> and{" "}
@@ -342,17 +342,17 @@ export default function CompanyOverviewPage() {
           <div className="bg-blue-50 rounded-3xl max-w-6xl mx-auto p-8 md:p-12 mt-16 mb-16">
             <div className="flex flex-col md:flex-row items-center gap-10 md:gap-12">
               <div className="flex-1 text-center md:text-left">
-                <h2 className="font-serif text-2xl md:text-3xl font-bold text-blue-700 mb-4">
+                <h2 className="font-kaisei text-2xl md:text-3xl font-bold text-blue-700 mb-4">
                   Care That Goes Beyond Medicine.
                 </h2>
-                <p className="font-sans text-gray-800 leading-relaxed mb-6">
+                <p className="font-kaisei text-gray-800 leading-relaxed mb-6">
                   At Ferozsons, we believe healthcare is more than just
                   prescriptions. It&apos;s about compassion, innovation, and a
                   deep commitment to improving lives across Pakistan.
                 </p>
                 <Link
                   href="/about"
-                  className="inline-block rounded-full px-6 py-2 bg-blue-600 text-white font-sans font-medium hover:bg-blue-700 transition-colors"
+                  className="inline-block rounded-full px-6 py-2 bg-blue-600 text-white font-kaisei font-medium hover:bg-blue-700 transition-colors"
                 >
                   Learn More
                 </Link>

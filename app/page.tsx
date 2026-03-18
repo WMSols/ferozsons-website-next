@@ -60,7 +60,7 @@ export default function HomePage() {
             </ButtonMotion>
             <p className="mt-20 max-w-2xl text-lg font-normal text-hero-heading md:text-xl">
               Reach New Peaks With{" "}
-              <span className="font-semibold text-hero-accent">Ferozsons</span>
+              <span className="font-semibold text-[#89bdf2]">Ferozsons</span>
             </p>
           </StaggerFadeUp>
         </div>
