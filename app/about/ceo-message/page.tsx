@@ -62,7 +62,7 @@ export default function CEOMessagePage() {
 
               <p className="text-muted-foreground leading-relaxed">
                 In our efforts to address critical healthcare challenges, we have also partnered with some of
-                the world's leading healthcare companies, including Gilead Sciences, Inc. USA – a
+                the world&apos;s leading healthcare companies, including Gilead Sciences, Inc. USA – a
                 research-based biopharmaceutical company that discovers, develops and commercializes innovative
                 medicines in areas of unmet medical need. Hepatitis B and C affects over 20 Million Pakistanis.
               </p>

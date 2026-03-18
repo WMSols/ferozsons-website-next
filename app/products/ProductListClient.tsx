@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -20,7 +20,6 @@ import {
 import type {
   StrapiCategoriesResponse,
   StrapiProduct,
-  StrapiProductCategory,
   StrapiProductsResponse,
 } from "@/types/strapi";
 
@@ -30,17 +29,9 @@ export default function ProductListClient() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [filterMode, setFilterMode] = useState<ProductsFilterMode>(
-    categoryFromUrl ? "category" : "prescribed"
+    categoryFromUrl ? "category" : "prescribed",
   );
   const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl);
-
-  useEffect(() => {
-    if (categoryFromUrl) {
-      setFilterMode("category");
-      setSelectedCategory(categoryFromUrl);
-      setPage(1);
-    }
-  }, [categoryFromUrl]);
 
   const resetPage = () => setPage(1);
 
@@ -76,22 +67,13 @@ export default function ProductListClient() {
   const currentPageFromMeta = pagination?.page ?? 1;
   const total = pagination?.total ?? 0;
 
-  // Keep local page in bounds when meta says we have fewer pages (e.g. after filter change or empty result)
-  useEffect(() => {
-    if (pageCount === 0) {
-      setPage(1);
-    } else if (page > pageCount) {
-      setPage(pageCount);
-    }
-  }, [pageCount, page]);
-
   const filteredBySearch = useMemo(() => {
     if (!search.trim()) return products;
     const q = search.toLowerCase();
     return products.filter(
       (p) =>
         p.name.toLowerCase().includes(q) ||
-        (p.product_category?.name ?? "").toLowerCase().includes(q)
+        (p.product_category?.name ?? "").toLowerCase().includes(q),
     );
   }, [products, search]);
 
@@ -143,7 +125,9 @@ export default function ProductListClient() {
 
           <div className="flex flex-wrap gap-2 mb-8">
             <Button
-              variant={effectiveFilterMode === "prescribed" ? "default" : "outline"}
+              variant={
+                effectiveFilterMode === "prescribed" ? "default" : "outline"
+              }
               size="sm"
               className="rounded-full"
               onClick={setFilterModePrescribed}
@@ -151,7 +135,9 @@ export default function ProductListClient() {
               Commonly Prescribed
             </Button>
             <Button
-              variant={effectiveFilterMode === "category" ? "default" : "outline"}
+              variant={
+                effectiveFilterMode === "category" ? "default" : "outline"
+              }
               size="sm"
               className="rounded-full"
               onClick={setFilterModeCategory}
@@ -169,27 +155,37 @@ export default function ProductListClient() {
           </div>
 
           {effectiveFilterMode === "category" && (
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap items-center gap-2 mb-8">
               {isCategoriesLoading ? (
                 <span className="text-sm text-muted-foreground">
                   Loading categories…
                 </span>
               ) : (
-                categories.map((cat) => (
-                  <Button
-                    key={cat.documentId ?? cat.id}
-                    variant={effectiveCategory === cat.slug ? "default" : "outline"}
-                    size="sm"
-                    className="rounded-full text-xs"
-                    onClick={() => setCategory(cat.slug)}
+                <>
+                  {categories.map((cat) => (
+                    <Button
+                      key={cat.documentId ?? cat.id}
+                      variant={
+                        effectiveCategory === cat.slug ? "default" : "outline"
+                      }
+                      size="sm"
+                      className="rounded-full text-xs"
+                      onClick={() => setCategory(cat.slug)}
+                    >
+                      {cat.name}
+                    </Button>
+                  ))}
+
+                  <Link
+                    href="/products/weight-management"
+                    className="inline-flex h-9 px-3 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(90deg,rgba(59,115,172,0.8)_38.94%,rgba(181,44,149,0.8)_100%)] text-sm font-medium text-white transition-opacity hover:opacity-90"
                   >
-                    {cat.name}
-                  </Button>
-                ))
+                    Weight Management
+                  </Link>
+                </>
               )}
             </div>
           )}
-
           {isError && (
             <p className="text-center text-destructive py-8">
               Failed to load products. Please try again.
@@ -215,7 +211,10 @@ export default function ProductListClient() {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredBySearch.map((product) => (
-                  <ProductCard key={product.documentId ?? product.id} product={product} />
+                  <ProductCard
+                    key={product.documentId ?? product.id}
+                    product={product}
+                  />
                 ))}
               </div>
 
@@ -232,7 +231,9 @@ export default function ProductListClient() {
                     size="sm"
                     className="rounded-full"
                     disabled={currentPageFromMeta <= 1}
-                    onClick={() => setPage(Math.max(1, currentPageFromMeta - 1))}
+                    onClick={() =>
+                      setPage(Math.max(1, currentPageFromMeta - 1))
+                    }
                     aria-disabled={currentPageFromMeta <= 1}
                   >
                     <ChevronLeft className="h-4 w-4 mr-1" />
@@ -247,7 +248,9 @@ export default function ProductListClient() {
                     size="sm"
                     className="rounded-full"
                     disabled={currentPageFromMeta >= pageCount}
-                    onClick={() => setPage(Math.min(pageCount, currentPageFromMeta + 1))}
+                    onClick={() =>
+                      setPage(Math.min(pageCount, currentPageFromMeta + 1))
+                    }
                     aria-disabled={currentPageFromMeta >= pageCount}
                   >
                     Next
@@ -296,7 +299,11 @@ function ProductCard({ product }: { product: StrapiProduct }) {
           {product.dosage ?? product.concentration ?? product.formulation ?? ""}
         </p>
         <Link href={`/products/${product.slug}`}>
-          <Button variant="outline" size="sm" className="mt-4 rounded-full w-full">
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-4 rounded-full w-full"
+          >
             View Details
           </Button>
         </Link>
