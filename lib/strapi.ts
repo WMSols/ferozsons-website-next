@@ -79,3 +79,29 @@ export function getProductBySlugUrl(slug: string): string {
   params.set("populate", "*");
   return `${STRAPI_BASE_URL}/api/products?${params.toString()}`;
 }
+
+export interface BuildNewsroomsUrlParams {
+  page: number;
+  pageSize?: number;
+}
+
+export function buildNewsroomsUrl({
+  page,
+  pageSize = 25,
+}: BuildNewsroomsUrlParams): string {
+  const params = new URLSearchParams();
+  params.set("pagination[page]", String(page));
+  params.set("pagination[pageSize]", String(pageSize));
+  params.set("populate[featured_image][fields]", "url");
+  params.set("populate[og_image][fields]", "url");
+  params.set("sort", "createdAt:desc");
+
+  return `${STRAPI_BASE_URL}/api/newsrooms?${params.toString()}`;
+}
+
+export function getNewsroomBySlugUrl(slug: string): string {
+  const params = new URLSearchParams();
+  params.set("filters[slug][$eq]", slug);
+  params.set("populate", "*");
+  return `${STRAPI_BASE_URL}/api/newsrooms?${params.toString()}`;
+}

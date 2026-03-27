@@ -1,6 +1,5 @@
-import PageHero from "@/components/layout/PageHero";
-import ArticlesGrid from "@/components/sections/ArticlesGrid";
-import { articles } from "@/data/articles";
+import { Suspense } from "react";
+import NewsroomListClient from "./NewsroomListClient";
 
 export const metadata = {
   title: "Newsroom",
@@ -9,16 +8,15 @@ export const metadata = {
 };
 
 export default function NewsroomPage() {
-  const newsArticles = articles.filter((a) => a.type === "news");
-
   return (
-    <>
-      <PageHero
-        title="Newsroom"
-        subtitle="Stay updated with the latest news and developments from Ferozsons Laboratories."
-        breadcrumbs={[{ label: "Newsroom" }]}
-      />
-      <ArticlesGrid articles={newsArticles} showDate columns={3} />
-    </>
+    <Suspense
+      fallback={
+        <div className="container py-12 text-center text-muted-foreground">
+          Loading news...
+        </div>
+      }
+    >
+      <NewsroomListClient />
+    </Suspense>
   );
 }

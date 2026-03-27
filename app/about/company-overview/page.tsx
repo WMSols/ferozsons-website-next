@@ -14,7 +14,7 @@ import {
 import CompanyHero from "./components/CompanyHero";
 import CoreValuesStatement from "./components/CoreValuesStatement";
 import BiotechBlock from "./components/BiotechBlock";
-import TherapeuticsGrid from "./components/TherapeuticsGrid";
+import TherapeuticsGrid from "../../../components/sections/TherapeuticsGrid";
 
 export const metadata = {
   title: "Company Overview",

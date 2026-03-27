@@ -17,6 +17,8 @@ import ProductSearchSection from "@/components/sections/ProductSearchSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import LegacyBanner from "@/components/sections/LegacyBanner";
 import QuoteSection from "@/components/sections/QuoteSection";
+import TherapeuticsGrid from "../components/sections/TherapeuticsGrid";
+import { therapeuticsData } from "@/data/company-overview";
 
 export default function HomePage() {
   const latestArticles = articles.filter((a) => a.type === "news").slice(0, 3);
@@ -24,6 +26,7 @@ export default function HomePage() {
   return (
     <>
       <HeroCarousel slides={heroSlides} />
+      <TherapeuticsGrid items={therapeuticsData} />
       <MissionSection {...missionData} />
       <ArticlesGrid
         articles={latestArticles}

@@ -82,3 +82,29 @@ export interface StrapiProductDetail extends StrapiProduct {
     url: string;
   };
 }
+
+export interface StrapiNewsroomImage {
+  id: number;
+  documentId: string;
+  url: string;
+}
+
+export interface StrapiNewsroom {
+  id: number;
+  documentId: string;
+  title: string;
+  slug: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  featured_image?: StrapiNewsroomImage;
+  og_image?: StrapiNewsroomImage;
+}
+
+export interface StrapiNewsroomsResponse {
+  data: StrapiNewsroom[];
+  meta: {
+    pagination: StrapiPagination;
+  };
+}
