@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { HeroImageZoom } from "@/components/animations/HeroImageZoom";
 import { StaggerFadeUp } from "@/components/animations/StaggerFadeUp";
@@ -28,39 +28,67 @@ export default function HeroCarousel({
   autoPlayInterval = 6000,
 }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  const startTimer = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrent((c) => {
+        setPrev(c);
+        return c === slides.length - 1 ? 0 : c + 1;
+      });
     }, autoPlayInterval);
-    return () => clearInterval(timer);
   }, [slides.length, autoPlayInterval]);
 
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [startTimer]);
+
+  const goToSlide = useCallback(
+    (index: number) => {
+      setCurrent((c) => {
+        setPrev(c);
+        return index;
+      });
+      startTimer(); // resets timer on manual click
+    },
+    [startTimer],
+  );
+
   return (
-    <section className="mx-4 mt-4 lg:mx-6 lg:mt-6 relative flex min-h-[100vh] flex-col items-center justify-center overflow-hidden rounded-t-lg rounded-b-[2rem] border border-hero-border bg-background px-6 py-20 shadow-sm md:px-12 md:py-24 lg:px-16 lg:py-28">
+    <section className="mx-4 mt-4 lg:mx-6 lg:mt-6 relative flex min-h-[100vh] flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-hero-border bg-background px-6 py-20 shadow-sm md:px-12 md:py-24 lg:px-16 lg:py-28">
       {slides.map((slide, index) => {
         const isActive = current === index;
+        const isPrev = prev === index;
+
         return (
           <div
             key={slide.id}
-            className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-1000 ease-in-out ${
-              isActive
-                ? "z-10 opacity-100 pointer-events-auto"
-                : "z-0 opacity-0 pointer-events-none"
-            }`}
+            className="absolute inset-0 flex flex-col items-center justify-center"
+            style={{
+              // active: fully visible on top
+              // prev: fading out below active
+              // others: hidden behind
+              opacity: isActive ? 1 : 0,
+              zIndex: isActive ? 10 : isPrev ? 5 : 0,
+              transition: "opacity 1200ms ease-in-out",
+              pointerEvents: isActive ? "auto" : "none",
+            }}
           >
             <div className="absolute inset-0">
-              {isActive && (
-                <HeroImageZoom>
-                  <img
-                    src={slide.image}
-                    alt="Ferozsons Laboratories Hero"
-                    className="h-full w-full object-cover object-center"
-                  />
-                </HeroImageZoom>
-              )}
+              <HeroImageZoom active={isActive}>
+                <img
+                  src={slide.image}
+                  alt="Hero"
+                  className="h-full w-full object-cover object-center"
+                />
+              </HeroImageZoom>
               <div
-                className="absolute inset-0 bg-gradient-to-b from-hero-overlay/80 via-hero-overlay/60 to-hero-overlay/40 transition-opacity duration-1000"
+                className="absolute inset-0 bg-gradient-to-b from-hero-overlay/80 via-hero-overlay/60 to-hero-overlay/40"
                 aria-hidden
               />
             </div>
@@ -79,7 +107,6 @@ export default function HeroCarousel({
                 <p className="mt-6 max-w-3xl text-xl font-normal leading-relaxed text-hero-body md:text-2xl">
                   {slide.description}
                 </p>
-
                 <ButtonMotion>
                   <Button
                     asChild
@@ -89,7 +116,6 @@ export default function HeroCarousel({
                     <Link href={slide.ctaLink}>{slide.ctaText}</Link>
                   </Button>
                 </ButtonMotion>
-
                 {slide.footer && slide.footer}
               </StaggerFadeUp>
             )}
@@ -101,7 +127,7 @@ export default function HeroCarousel({
         {slides.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrent(index)}
+            onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
             className={`h-2 rounded-full transition-all duration-500 ease-out ${
               current === index

@@ -5,14 +5,18 @@ import { motion } from "framer-motion";
 
 type ImgProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
-export function HeroImageZoom({ children }: { children: React.ReactNode }) {
+export function HeroImageZoom({
+  children,
+  active = true, // 👈 add this
+}: {
+  children: React.ReactNode;
+  active?: boolean; // 👈 add this
+}) {
   const child = Children.only(children);
   if (!isValidElement<ImgProps>(child) || child.type !== "img") {
     return <>{children}</>;
   }
   const props = child.props as ImgProps;
-  // `motion.img` redefines several DOM handler prop types (drag/animation/etc).
-  // For this wrapper we only need core image attributes, so we whitelist them.
   const {
     src,
     srcSet,
@@ -28,6 +32,7 @@ export function HeroImageZoom({ children }: { children: React.ReactNode }) {
     height,
     draggable,
   } = props;
+
   return (
     <motion.img
       src={src}
@@ -43,7 +48,7 @@ export function HeroImageZoom({ children }: { children: React.ReactNode }) {
       width={width}
       height={height}
       draggable={draggable}
-      animate={{ scale: [1, 1.05, 1] }}
+      animate={active ? { scale: [1, 1.05, 1] } : { scale: 1 }} // 👈 only animate when active
       transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
     />
   );

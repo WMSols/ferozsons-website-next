@@ -22,10 +22,10 @@ export default function PurposePage() {
       />
 
       {/* Purpose Statement */}
-      <SectionWrapper className="py-20 md:py-28" containerClassName="max-w-3xl text-center">
-        <p className="text-primary font-medium tracking-wider uppercase text-sm mb-6">
-          Why We Exist
-        </p>
+      <SectionWrapper
+        className="py-20 md:py-28"
+        containerClassName="max-w-3xl text-center"
+      >
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold leading-snug text-foreground">
           Our purpose is to advance health and improve lives by placing patients
           at the center of everything we do.
@@ -38,7 +38,10 @@ export default function PurposePage() {
       </SectionWrapper>
 
       {/* Vision */}
-      <SectionWrapper className="bg-secondary py-16 md:py-20" containerClassName="max-w-4xl">
+      <SectionWrapper
+        className="bg-secondary py-16 md:py-20"
+        containerClassName="max-w-4xl"
+      >
         <div className="grid md:grid-cols-[1fr_2fr] gap-10 items-start">
           <div>
             <p className="text-primary font-medium tracking-wider uppercase text-sm mb-2">
@@ -47,9 +50,9 @@ export default function PurposePage() {
             <div className="w-16 h-1 bg-primary rounded-full" />
           </div>
           <p className="text-foreground text-lg md:text-xl font-serif leading-relaxed">
-            To achieve leadership in healthcare by placing patients at the center
-            of everything we do, earning trust every day through innovation,
-            responsibility, and unwavering commitment to quality.
+            To achieve leadership in healthcare by placing patients at the
+            center of everything we do, earning trust every day through
+            innovation, responsibility, and unwavering commitment to quality.
           </p>
         </div>
       </SectionWrapper>
