@@ -56,15 +56,15 @@ export default function FooterCTA() {
         {[
           {
             label: "Our pipeline",
-            href: "https://www.abbvie.com/science/pipeline.html",
+            href: "/newsroom",
           },
           {
             label: "Our strategy",
-            href: "https://www.abbvie.com/who-we-are.html",
+            href: "/newsroom",
           },
           {
             label: "Our responsibility",
-            href: "https://www.abbvie.com/sustainability.html",
+            href: "/newsroom",
           },
         ].map((link) => (
           <a

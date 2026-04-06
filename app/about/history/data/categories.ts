@@ -5,7 +5,10 @@ export type Category =
   | "research"
   | "acquisition"
   | "brand"
-  | "collaboration";
+  | "collaboration"
+  | "foundation"
+  | "expansion"
+  | "manufacturing";
 
 export interface CategoryMeta {
   label: string;
@@ -29,7 +32,7 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
   },
   brand: { label: "Brand Launch", color: "#0057b8", bg: "#e6f0fb" },
   collaboration: { label: "Collaborations", color: "#0057b8", bg: "#e6f0fb" },
-  foundation: { bg: "#F5F5F5", color: "#424242" },
-  expansion: { bg: "#E8F5E9", color: "#2E7D32" },
-  manufacturing: { bg: "#FFF8E1", color: "#F57F17" },
+  foundation: { label: "Foundation", color: "#424242", bg: "#F5F5F5" },
+  expansion: { label: "Expansion", color: "#2E7D32", bg: "#E8F5E9" },
+  manufacturing: { label: "Manufacturing", color: "#F57F17", bg: "#FFF8E1" },
 };
