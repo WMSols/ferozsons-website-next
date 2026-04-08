@@ -66,35 +66,38 @@ export const timelineEvents = [
   {
     year: "1954",
     title: "Founded",
-    description: "Ferozsons Laboratories established in Nowshera, Pakistan.",
+    description:
+      "Ferozsons Laboratories Limited established in Nowshera, Pakistan.",
   },
   {
     year: "1960",
-    title: "Abbott Partnership",
-    description: "Began long-standing relationship with Abbott Laboratories.",
+    title: "KSE Listing",
+    description:
+      "The first Pakistani pharmaceutical company listed on Karachi Stock Exchange (KSE).",
   },
   {
-    year: "2003",
-    title: "Global Expansion",
+    year: "2002",
+    title: "Strategic Global Partnerships",
     description:
-      "Expanded partnerships with leading global pharmaceutical companies.",
+      "Partnered with Curatis Pharma GmbH (Germany) and Bagó Group S.A. (Argentina) to introduce advanced biological therapies in oncology and liver disease.",
+  },
+  {
+    year: "2006",
+    title: "First Biopharma Company",
+    description:
+      "Entered a joint venture with Bagó Group (Argentina) to establish BF Biosciences, Pakistan’s first biopharmaceutical company.",
+  },
+  {
+    year: "2008",
+    title: "Boston Scientific Partnership",
+    description:
+      "Secured distribution rights for advanced interventional medical devices from Boston Scientific Inc., a global industry leader.",
   },
   {
     year: "2014",
-    title: "Technology Alliance",
+    title: "Breakthrough Therapies",
     description:
-      "Partnered with Nihon Kohden for medical monitoring technologies.",
-  },
-  {
-    year: "2018",
-    title: "Boston Scientific",
-    description: "Entered alliance with Boston Scientific for medical devices.",
-  },
-  {
-    year: "2024",
-    title: "New Horizons",
-    description:
-      "Continued innovation and expanded portfolio across therapeutic areas.",
+      "Partnered with Gilead Sciences Inc. to introduce Sovaldi for Hepatitis C, with Pakistan becoming the first country to implement the access program.",
   },
 ];
 
