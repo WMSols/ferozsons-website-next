@@ -1,32 +1,70 @@
-import PageHero from "@/components/layout/PageHero";
-import { csrInitiatives } from "@/data/partnerships";
+"use client";
 
-export const metadata = {
-  title: "Corporate Social Responsibility",
-  description: "Making a positive impact on communities across Pakistan.",
+import { useState } from "react";
+import PageHero from "@/components/layout/PageHero";
+import {
+  csrImpactStats,
+  csrInitiatives,
+  type CSRCategory,
+} from "@/data/csrData";
+import CSRClosingCTA from "./components/CSRClosingCTA";
+import CSRFilterBar from "./components/CSRFilterBar";
+import CSRInitiativeGrid from "./components/CSRInitiativeGrid";
+import CSRPillarOverview from "./components/CSRPillarOverview";
+import CSRStatsBar from "./components/CSRStatsBar";
+import CSRVisionSection from "./components/CSRVisionSection";
+
+// ─── Page ───────────────────────────────────────────────────────────────────
+const metadata = {
+  title: "Creating Impact",
+  description:
+    "Ferozsons Laboratories' Corporate Social Responsibility initiatives in education, healthcare, arts, and community development.",
 };
 
-export default function CSRPage() {
+export default function CreatingImpactPage() {
+  const [activeCategory, setActiveCategory] = useState<CSRCategory | "all">(
+    "all",
+  );
+
+  const filtered =
+    activeCategory === "all"
+      ? csrInitiatives
+      : csrInitiatives.filter((i) => i.category === activeCategory);
+
+  const countFor = (cat: CSRCategory) =>
+    csrInitiatives.filter((i) => i.category === cat).length;
+
   return (
     <>
-      <PageHero title="Corporate Social Responsibility" subtitle="Making a positive impact on communities across Pakistan." breadcrumbs={[{ label: "CSR" }]} />
+      <PageHero
+        title="Creating Impact"
+        subtitle="At Ferozsons, giving back is not a programme — it is our purpose. From classrooms to clinical wards, we invest in the communities that define Pakistan."
+        breadcrumbs={[{ label: "Creating Impact" }]}
+      />
 
-      <section className="py-16">
-        <div className="container max-w-4xl">
-          <p className="text-muted-foreground leading-relaxed mb-12">
-            At Ferozsons Laboratories, we believe in giving back to the communities that have supported us for nearly seven decades. Our CSR initiatives focus on education, healthcare access, and community development, reflecting our commitment to building a healthier, more equitable society.
-          </p>
+      <CSRStatsBar stats={csrImpactStats} />
 
-          <div className="grid gap-8">
-            {csrInitiatives.map((initiative) => (
-              <div key={initiative.title} className="bg-secondary rounded-lg p-8">
-                <h3 className="text-xl font-bold mb-3">{initiative.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{initiative.description}</p>
-              </div>
-            ))}
-          </div>
+      <CSRVisionSection />
+
+      <CSRPillarOverview
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+        countFor={countFor}
+      />
+
+      <section className="pb-20">
+        <div className="container">
+          <CSRFilterBar
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+            countFor={countFor}
+          />
+
+          <CSRInitiativeGrid filtered={filtered} />
         </div>
       </section>
+
+      <CSRClosingCTA />
     </>
   );
 }

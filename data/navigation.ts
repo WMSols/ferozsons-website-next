@@ -59,7 +59,8 @@ export const footerLinks = {
     { label: "Newsroom", href: "/newsroom" },
     { label: "Stories", href: "/stories" },
     { label: "Careers", href: "/careers" },
-    { label: "Patients", href: "/patients" },
+    { label: "Contact Us", href: "/contact" },
+    // { label: "Patients", href: "/patients" },
   ],
   column3: [
     { label: "Physicians", href: "/physicians" },
