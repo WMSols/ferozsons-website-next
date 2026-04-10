@@ -33,13 +33,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&display=swap"
         />
       </head>
-      <body className={`${inter.variable} ${merriweather.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${merriweather.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
         <TooltipProvider>
           <QueryProvider>
             <Toaster />

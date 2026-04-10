@@ -24,7 +24,7 @@ export default function TherapeuticsGrid({
         {backgroundImage && (
           <div className="absolute inset-0 pointer-events-none">
             <div
-              className="absolute inset-0 bg-no-repeat bg-right bg-cover md:bg-contain opacity-40 md:opacity-100"
+              className="absolute inset-0 bg-no-repeat bg-right bg-cover  opacity-40 md:opacity-100"
               style={{ backgroundImage: `url('${backgroundImage}')` }}
               aria-hidden
             />
