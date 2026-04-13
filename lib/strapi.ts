@@ -16,7 +16,7 @@ export async function strapiFetch(input: string, init?: RequestInit) {
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     throw new Error(
-      `Strapi request failed (${res.status} ${res.statusText}) ${text}`.trim()
+      `Strapi request failed (${res.status} ${res.statusText}) ${text}`.trim(),
     );
   }
   return res;
@@ -104,4 +104,31 @@ export function getNewsroomBySlugUrl(slug: string): string {
   params.set("filters[slug][$eq]", slug);
   params.set("populate", "*");
   return `${STRAPI_BASE_URL}/api/newsrooms?${params.toString()}`;
+}
+
+export function getReportTypesUrl(): string {
+  return `${STRAPI_BASE_URL}/api/report-types`;
+}
+
+export interface BuildInvestorReportsUrlParams {
+  page: number;
+  pageSize?: number;
+  type?: string;
+}
+
+export function buildInvestorReportsUrl({
+  page,
+  pageSize = 25,
+  type,
+}: BuildInvestorReportsUrlParams): string {
+  const params = new URLSearchParams();
+  params.set("populate", "report_file");
+  params.set("pagination[page]", String(page));
+  params.set("pagination[pageSize]", String(pageSize));
+
+  if (type?.trim()) {
+    params.set("filters[report_type][name][$eq]", type.trim());
+  }
+
+  return `${STRAPI_BASE_URL}/api/investor-reports?${params.toString()}`;
 }

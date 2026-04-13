@@ -1,10 +1,18 @@
 import Link from "next/link";
 import PageHero from "@/components/layout/PageHero";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import { pressReleases } from "@/data/articles";
 import { financialHighlights } from "@/data/investors";
+import {
+  fetchInvestorReports,
+  fetchReportTypes,
+  normalizeReportType,
+  parsePositiveInteger,
+  INVESTORS_REPORTS_PAGE_SIZE,
+} from "./_lib/investors-api";
 import FinancialHighlight from "./components/FinancialHighlight";
-import ReportItem from "./components/ReportItem";
+import ReportFilterTabs from "./components/ReportFilterTabs";
+import ReportList from "./components/ReportList";
+import Pagination from "./components/Pagination";
 
 export const metadata = {
   title: "Investors",
@@ -12,7 +20,50 @@ export const metadata = {
     "Financial information and governance for shareholders and the investment community.",
 };
 
-export default function InvestorsPage() {
+type SearchParamsRecord = Record<string, string | string[] | undefined>;
+
+interface InvestorsPageProps {
+  searchParams?: SearchParamsRecord | Promise<SearchParamsRecord>;
+}
+
+function getQueryValue(
+  value: string | string[] | undefined,
+): string | undefined {
+  if (Array.isArray(value)) return value[0];
+  return value;
+}
+
+export default async function InvestorsPage({
+  searchParams,
+}: InvestorsPageProps) {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const requestedType = getQueryValue(resolvedSearchParams?.type);
+  const requestedPage = parsePositiveInteger(
+    getQueryValue(resolvedSearchParams?.page),
+  );
+
+  const reportTypes = await fetchReportTypes();
+  const activeType = normalizeReportType(requestedType, reportTypes);
+
+  let reportsResponse = await fetchInvestorReports({
+    type: activeType,
+    page: requestedPage,
+    pageSize: INVESTORS_REPORTS_PAGE_SIZE,
+  });
+
+  const maxPage = Math.max(reportsResponse.meta.pagination.pageCount, 1);
+  const currentPage = Math.min(requestedPage, maxPage);
+
+  if (currentPage !== requestedPage) {
+    reportsResponse = await fetchInvestorReports({
+      type: activeType,
+      page: currentPage,
+      pageSize: INVESTORS_REPORTS_PAGE_SIZE,
+    });
+  }
+
+  const { pageCount, total } = reportsResponse.meta.pagination;
+
   return (
     <>
       <PageHero
@@ -34,14 +85,15 @@ export default function InvestorsPage() {
         </div>
 
         <h2 className="text-2xl font-bold mb-6">Reports & Filings</h2>
-        <div className="space-y-4 mb-16">
-          {pressReleases.map((report) => (
-            <ReportItem
-              key={report.title}
-              title={report.title}
-              date={report.date}
-            />
-          ))}
+        <div className="mb-16">
+          <ReportFilterTabs reportTypes={reportTypes} activeType={activeType} />
+          <ReportList reports={reportsResponse.data} />
+          <Pagination
+            currentPage={currentPage}
+            pageCount={pageCount}
+            total={total}
+            activeType={activeType}
+          />
         </div>
 
         <h2 className="text-2xl font-bold mb-4">Corporate Governance</h2>
