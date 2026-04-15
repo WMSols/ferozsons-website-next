@@ -15,9 +15,17 @@ const BiopharmaSection: React.FC = () => {
 
   const bioCards: BioCard[] = [
     { label: "Founded", value: "2006", sub: "Established with Bagó Group" },
-    { label: "Listed on PSX", value: "2024", sub: "Successful IPO" },
-    { label: "First in Pakistan", value: "cGMP", sub: "Biotech Manufacturing" },
-    { label: "Manufacturing", value: "Bio", sub: "Pharmaceutical Products" },
+    { label: "Listed on PSX", value: "2024", sub: "Public Market Debut" },
+    {
+      label: "First in Pakistan",
+      value: "cGMP",
+      sub: "Biopharma Manufacturing",
+    },
+    {
+      label: "Improving Patient Outcomes",
+      value: "Patient Impact",
+      sub: "Therapeutic Range",
+    },
   ];
 
   return (
@@ -35,7 +43,7 @@ const BiopharmaSection: React.FC = () => {
         className="absolute inset-0 pointer-events-none"
       >
         <div
-          className="absolute inset-0 opacity-100"
+          className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
             backgroundSize: "35px 35px",

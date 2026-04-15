@@ -1,31 +1,19 @@
-export interface Partnership {
+export type Partnership = {
   name: string;
-  logo?: string;
   description: string;
   since: string;
-}
+  logo: string;
+  website: string;
+};
 
 export const partnerships: Partnership[] = [
   {
-    name: "Bagó",
+    name: "BF Biosciences",
     description:
-      "Strategic partnership for innovative pharmaceutical solutions across multiple therapeutic areas in Pakistan.",
-    since: "1990",
-    logo: "/partnerships/bago.png",
-  },
-  {
-    name: "Gilead Sciences",
-    description:
-      "Strategic partnership for hepatitis C treatments including Sovaldi, Harvoni, and Epclusa. Together, we are transforming the treatment landscape for hepatitis C in Pakistan.",
-    since: "2015",
-    logo: "/partnerships/gilead.png",
-  },
-  {
-    name: "Boston Scientific",
-    description:
-      "Collaboration bringing cutting-edge medical devices and technologies for cardiovascular and other interventional procedures.",
-    since: "2018",
-    logo: "/partnerships/boston-scientific.png",
+      "A joint venture focused on manufacturing and distributing innovative biopharmaceutical products, including interferon-based therapies for hepatitis treatment across Pakistan.",
+    since: "2006",
+    logo: "/partnerships/bf-biosciences.png",
+    website: "https://www.bfbio.com",
   },
   {
     name: "BioGaia",
@@ -33,13 +21,15 @@ export const partnerships: Partnership[] = [
       "Partnership focused on probiotic healthcare products, bringing Swedish innovation to improve gut health across Pakistan.",
     since: "2016",
     logo: "/partnerships/biogaia.png",
+    website: "https://www.biogaia.com",
   },
   {
-    name: "Nihon Kohden",
+    name: "Boston Scientific",
     description:
-      "Alliance for advanced medical monitoring equipment, expanding diagnostic capabilities throughout Pakistani healthcare facilities.",
-    since: "2014",
-    logo: "/partnerships/nihon-kohden.png",
+      "Collaboration bringing cutting-edge medical devices and technologies for cardiovascular and other interventional procedures.",
+    since: "2018",
+    logo: "/partnerships/boston-scientific.png",
+    website: "https://www.bostonscientific.com",
   },
   {
     name: "Butterfly Network",
@@ -47,19 +37,48 @@ export const partnerships: Partnership[] = [
       "Bringing revolutionary handheld ultrasound technology to make point-of-care imaging accessible and affordable.",
     since: "2020",
     logo: "/partnerships/butterfly-network.png",
+    website: "https://www.butterflynetwork.com",
   },
-  // {
-  //   name: "Abbott Laboratories",
-  //   description:
-  //     "Long-standing partnership bringing a diverse range of pharmaceutical products to Pakistan, spanning multiple therapeutic areas.",
-  //   since: "1960",
-  // },
-  // {
-  //   name: "Roche",
-  //   description:
-  //     "Partnership focused on oncology treatments, bringing innovative cancer therapies to patients across Pakistan.",
-  //   since: "2005",
-  // },
+  {
+    name: "Chiesi",
+    description:
+      "Partnership with a global, family-owned biopharmaceutical group delivering innovative therapeutic solutions in respiratory health, rare diseases, and neonatology across Pakistan.",
+    since: "2020",
+    logo: "/partnerships/chiesi.png",
+    website: "https://www.chiesi.com",
+  },
+  {
+    name: "Gilead Sciences",
+    description:
+      "Strategic partnership for hepatitis C treatments including Sovaldi, Harvoni, and Epclusa. Together, we are transforming the treatment landscape for hepatitis C in Pakistan.",
+    since: "2015",
+    logo: "/partnerships/gilead.png",
+    website: "https://www.gilead.com",
+  },
+  {
+    name: "Hoechst",
+    description:
+      "Long-standing collaboration with Hoechst Pakistan Limited — formerly Sanofi-Aventis — bringing a trusted portfolio of medicines, vaccines, and insulin therapies to patients across Pakistan for over five decades.",
+    since: "1970",
+    logo: "/partnerships/hoechst.png",
+    website: "https://hoechst.com.pk",
+  },
+  {
+    name: "Lucky Core Industries",
+    description:
+      "Partnership with one of Pakistan's leading manufacturing conglomerates, formerly ICI Pakistan, spanning pharmaceuticals, agri sciences, chemicals, and animal health to serve industries nationwide.",
+    since: "2000",
+    logo: "/partnerships/lucky-core-industries.png",
+    website: "https://luckycore.com",
+  },
+  {
+    name: "Nihon Kohden",
+    description:
+      "Alliance for advanced medical monitoring equipment, expanding diagnostic capabilities throughout Pakistani healthcare facilities.",
+    since: "2014",
+    logo: "/partnerships/nihon-kohden.png",
+    website: "https://www.nihonkohden.com",
+  },
 ];
 
 export const timelineEvents = [

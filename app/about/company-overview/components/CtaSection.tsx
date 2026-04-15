@@ -3,6 +3,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const ctaLinks = [
+  { label: "About Us", href: "/about" },
+  { label: "Company Overview", href: "/about/company-overview" },
+  { label: "Medical Technologies", href: "/products/medical-technologies" },
+  { label: "CSR", href: "/csr" },
+  { label: "Newsroom", href: "/newsroom" },
+  { label: "Investors", href: "/investors" },
+];
+
 const CtaSection: React.FC = () => {
   return (
     <section
@@ -37,18 +46,10 @@ const CtaSection: React.FC = () => {
             of healthcare.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {[
-              "About Us",
-              "How It Works",
-              "Clinical Excellence",
-              "Innovation",
-              "Quality & Safety",
-              "Newsroom",
-              "Investors",
-            ].map((link, i) => (
+            {ctaLinks.map((link, i) => (
               <motion.a
-                key={link}
-                href="#"
+                key={link.href}
+                href={link.href}
                 className="text-blue-100/80 hover:text-white border border-white/15 hover:border-white/50 px-5 py-2.5 rounded-full text-sm font-medium transition-all backdrop-blur-sm hover:bg-white/10"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +57,7 @@ const CtaSection: React.FC = () => {
                 transition={{ delay: i * 0.05 }}
                 whileHover={{ scale: 1.05 }}
               >
-                {link}
+                {link.label}
               </motion.a>
             ))}
           </div>

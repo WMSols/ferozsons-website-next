@@ -39,7 +39,7 @@ export default function HeroSection() {
             y: yImage,
             position: "absolute",
             inset: -50, // Expanded slightly to hide edges during parallax movement
-            backgroundImage: "url('/images/about-history/ferozsons-team.jpg')", // Replace with your actual image path
+            backgroundImage: "url('/images/about-history/banner-history.png')", // Replace with your actual image path
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

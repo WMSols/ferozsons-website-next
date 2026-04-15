@@ -7,9 +7,9 @@ import type { Blob, Stat } from "./types";
 
 const STATS: Stat[] = [
   { value: "1500+", label: "Employees" },
-  { value: "30+", label: "Countries Exported To" },
+  { value: "30+", label: "Countries We Export To." },
   { value: "70+", label: "Years of Trusted Service" },
-  { value: "250K+", label: "Hepatitis C Patients Cured" },
+  // { value: "250K+", label: "Hepatitis C Patients Cured" },
 ];
 
 const HeroSection: React.FC = () => {
@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="relative h-screen overflow-hidden flex items-center justify-center"
+      className="relative h-screen overflow-hidden flex items-center justify-center "
       style={{
         background:
           "linear-gradient(135deg, #0d2d6b 0%, #1a4db8 40%, #1e6fa8 70%, #12547a 100%)",
@@ -116,7 +116,7 @@ const HeroSection: React.FC = () => {
           transition={{ delay: 0.2 }}
           className="text-blue-200 text-xs tracking-[0.45em] uppercase font-semibold mb-6"
         >
-          Established 1954 · Pakistan Stock Exchange
+          Established 1954
         </motion.p>
 
         <motion.h1
@@ -172,7 +172,7 @@ const HeroSection: React.FC = () => {
         </span>
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute bottom-0 left-0 right-0 z-40 translate-y-[2px]">
         <svg
           viewBox="0 0 1440 80"
           fill="none"

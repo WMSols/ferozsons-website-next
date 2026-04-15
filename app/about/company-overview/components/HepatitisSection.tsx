@@ -53,7 +53,7 @@ const HepatitisSection: React.FC = () => {
                   className="text-[#0d2d6b] text-6xl md:text-7xl font-black"
                   style={{ fontFamily: "'Georgia', serif" }}
                 >
-                  <Counter target="250000" />
+                  <Counter target="250000" />+
                 </div>
                 <div className="text-[#1a56db] font-bold text-xl mt-2">
                   Patients Cured
@@ -112,7 +112,7 @@ const HepatitisSection: React.FC = () => {
             </p>
 
             <motion.a
-              href="#"
+              href="/products/pharmaceuticals"
               className="inline-flex items-center gap-2 bg-[#1a56db] text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-[#0d2d6b] transition-colors shadow-lg shadow-blue-500/25"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
@@ -131,7 +131,7 @@ const HepatitisSection: React.FC = () => {
             </p>
 
             <motion.a
-              href="#"
+              href="/csr"
               className="inline-flex items-center gap-2 border-2 border-[#1a56db] text-[#1a56db] px-6 py-3 rounded-full text-sm font-bold hover:bg-[#1a56db] hover:text-white transition-all"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}

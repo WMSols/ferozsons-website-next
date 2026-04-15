@@ -100,7 +100,7 @@ const AboutSection: React.FC = () => {
             className="text-4xl md:text-5xl font-black text-[#0d2d6b] leading-tight"
             style={{ fontFamily: "'Georgia', serif" }}
           >
-            Ferozsons Laboratories was built for Pakistan.
+            A Story of Growth and Purpose.
           </h2>
           <p className="text-gray-600 leading-relaxed text-lg">
             Established in <strong className="text-[#0d2d6b]">1954</strong>,
@@ -122,7 +122,7 @@ const AboutSection: React.FC = () => {
             {[
               { num: "1500+", lbl: "Employees" },
               { num: "30+", lbl: "Countries" },
-              { num: "250K+", lbl: "Cured" },
+              // { num: "250K+", lbl: "Cured" },
             ].map((s) => (
               <div
                 key={s.lbl}

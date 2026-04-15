@@ -6,132 +6,6 @@ import type { TherapeuticArea } from "./types";
 
 const THERAPEUTIC_AREAS: TherapeuticArea[] = [
   {
-    id: "oncology",
-    title: "Oncology",
-    desc: "Advanced cancer therapies delivering targeted, evidence-based treatment solutions.",
-    svg: (
-      <svg
-        viewBox="0 0 80 80"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-16 h-16"
-      >
-        <circle
-          cx="40"
-          cy="40"
-          r="14"
-          stroke="white"
-          strokeWidth="2"
-          fill="none"
-        />
-        <circle
-          cx="40"
-          cy="40"
-          r="5"
-          stroke="white"
-          strokeWidth="2"
-          fill="none"
-        />
-        <circle
-          cx="40"
-          cy="22"
-          r="4"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="40"
-          cy="58"
-          r="4"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="22"
-          cy="40"
-          r="4"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="58"
-          cy="40"
-          r="4"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="27.5"
-          cy="27.5"
-          r="3"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="52.5"
-          cy="52.5"
-          r="3"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="52.5"
-          cy="27.5"
-          r="3"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="27.5"
-          cy="52.5"
-          r="3"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <line
-          x1="40"
-          y1="26"
-          x2="40"
-          y2="34"
-          stroke="white"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="40"
-          y1="46"
-          x2="40"
-          y2="54"
-          stroke="white"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="26"
-          y1="40"
-          x2="34"
-          y2="40"
-          stroke="white"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="46"
-          y1="40"
-          x2="54"
-          y2="40"
-          stroke="white"
-          strokeWidth="1.5"
-        />
-      </svg>
-    ),
-  },
-  {
     id: "antiviral",
     title: "Antiviral",
     desc: "Pioneering antiviral treatments, including breakthrough hepatitis C therapies.",
@@ -262,6 +136,150 @@ const THERAPEUTIC_AREAS: TherapeuticArea[] = [
     ),
   },
   {
+    id: "antibiotics",
+    title: "Antibiotics",
+    desc: "Broad and targeted antibiotic therapies combating bacterial infections effectively.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <rect
+          x="33"
+          y="14"
+          width="14"
+          height="30"
+          rx="7"
+          stroke="white"
+          strokeWidth="2"
+          fill="none"
+        />
+        <line
+          x1="40"
+          y1="44"
+          x2="40"
+          y2="62"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="30"
+          y1="54"
+          x2="50"
+          y2="54"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="33"
+          y1="29"
+          x2="47"
+          y2="29"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <circle cx="40" cy="22" r="3" fill="white" opacity="0.5" />
+      </svg>
+    ),
+  },
+  {
+    id: "cough",
+    title: "Cough Syrup & Lozenges",
+    desc: "Effective respiratory relief formulations for cough, throat, and airway comfort.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <path
+          d="M30 18 L28 42 C28 50 34 56 40 56 C46 56 52 50 52 42 L50 18Z"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinejoin="round"
+          fill="none"
+        />
+        <line
+          x1="28"
+          y1="30"
+          x2="52"
+          y2="30"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M34 16 C34 13 46 13 46 16"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <circle
+          cx="56"
+          cy="58"
+          r="6"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <line
+          x1="53"
+          y1="58"
+          x2="59"
+          y2="58"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="56"
+          y1="55"
+          x2="56"
+          y2="61"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "cardiology",
+    title: "Cardiology",
+    desc: "Heart health solutions built on decades of trusted clinical excellence.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <path
+          d="M40 62 C40 62 16 48 16 32 C16 24 22 18 30 18 C35 18 39 21 40 24 C41 21 45 18 50 18 C58 18 64 24 64 32 C64 48 40 62 40 62Z"
+          stroke="white"
+          strokeWidth="2"
+          fill="none"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M24 38 L30 32 L36 42 L42 28 L48 38 L54 34"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </svg>
+    ),
+  },
+  {
     id: "gastroenterology",
     title: "Gastroenterology",
     desc: "Comprehensive digestive health solutions spanning prevention to advanced care.",
@@ -301,6 +319,361 @@ const THERAPEUTIC_AREAS: TherapeuticArea[] = [
           stroke="white"
           strokeWidth="1.5"
           fill="none"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "urology",
+    title: "Urology",
+    desc: "Targeted urological therapies addressing kidney, bladder, and urinary tract health.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <path
+          d="M28 18 C20 18 16 26 18 34 C20 42 28 44 30 50 L30 62"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M52 18 C60 18 64 26 62 34 C60 42 52 44 50 50 L50 62"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M30 58 C34 62 46 62 50 58"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M24 28 C26 24 30 22 34 24"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M56 28 C54 24 50 22 46 24"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "weight-management",
+    title: "Weight Management",
+    desc: "Evidence-based metabolic and weight management solutions for long-term wellness.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <path
+          d="M20 56 C20 56 24 36 40 36 C56 36 60 56 60 56Z"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinejoin="round"
+          fill="none"
+        />
+        <line
+          x1="40"
+          y1="36"
+          x2="40"
+          y2="24"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <circle
+          cx="40"
+          cy="21"
+          r="4"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <line
+          x1="20"
+          y1="56"
+          x2="60"
+          y2="56"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="30"
+          y1="56"
+          x2="27"
+          y2="62"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="50"
+          y1="56"
+          x2="53"
+          y2="62"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="40"
+          y1="56"
+          x2="40"
+          y2="63"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "dermatology",
+    title: "Dermatology",
+    desc: "Advanced skin care therapeutics for a wide range of dermatological conditions.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <path
+          d="M20 50 C20 36 28 22 40 20 C52 22 60 36 60 50 C60 58 52 64 40 64 C28 64 20 58 20 50Z"
+          stroke="white"
+          strokeWidth="2"
+          fill="none"
+        />
+        <path
+          d="M32 38 C34 34 38 32 40 32 C42 32 46 34 48 38"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <circle
+          cx="32"
+          cy="46"
+          r="2.5"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="48"
+          cy="46"
+          r="2.5"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="40"
+          cy="52"
+          r="2.5"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <path
+          d="M40 20 L40 14"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M52 24 L56 20"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M28 24 L24 20"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "psychiatry",
+    title: "Psychiatry",
+    desc: "Mental health therapeutics supporting neurological and psychological well-being.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <path
+          d="M22 40 C22 26 30 18 40 18 C50 18 58 26 58 38 C58 46 54 52 48 56 L48 64 L32 64 L32 56 C26 52 22 47 22 40Z"
+          stroke="white"
+          strokeWidth="2"
+          fill="none"
+        />
+        <line
+          x1="32"
+          y1="60"
+          x2="48"
+          y2="60"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M34 36 C34 32 38 30 40 30 C44 30 46 33 46 36 C46 40 42 42 40 44"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <circle cx="40" cy="48" r="1.5" fill="white" />
+      </svg>
+    ),
+  },
+  {
+    id: "oncology",
+    title: "Oncology",
+    desc: "Advanced cancer therapies delivering targeted, evidence-based treatment solutions.",
+    svg: (
+      <svg
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-16 h-16"
+      >
+        <circle
+          cx="40"
+          cy="40"
+          r="14"
+          stroke="white"
+          strokeWidth="2"
+          fill="none"
+        />
+        <circle
+          cx="40"
+          cy="40"
+          r="5"
+          stroke="white"
+          strokeWidth="2"
+          fill="none"
+        />
+        <circle
+          cx="40"
+          cy="22"
+          r="4"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="40"
+          cy="58"
+          r="4"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="22"
+          cy="40"
+          r="4"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="58"
+          cy="40"
+          r="4"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="27.5"
+          cy="27.5"
+          r="3"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="52.5"
+          cy="52.5"
+          r="3"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="52.5"
+          cy="27.5"
+          r="3"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <circle
+          cx="27.5"
+          cy="52.5"
+          r="3"
+          stroke="white"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <line
+          x1="40"
+          y1="26"
+          x2="40"
+          y2="34"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <line
+          x1="40"
+          y1="46"
+          x2="40"
+          y2="54"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <line
+          x1="26"
+          y1="40"
+          x2="34"
+          y2="40"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <line
+          x1="46"
+          y1="40"
+          x2="54"
+          y2="40"
+          stroke="white"
+          strokeWidth="1.5"
         />
       </svg>
     ),
@@ -354,9 +727,9 @@ const THERAPEUTIC_AREAS: TherapeuticArea[] = [
     ),
   },
   {
-    id: "cardiology",
-    title: "Cardiology",
-    desc: "Heart health solutions built on decades of trusted clinical excellence.",
+    id: "pain-relief",
+    title: "Pain Relief",
+    desc: "Analgesic and anti-inflammatory solutions for acute and chronic pain management.",
     svg: (
       <svg
         viewBox="0 0 80 80"
@@ -365,171 +738,21 @@ const THERAPEUTIC_AREAS: TherapeuticArea[] = [
         className="w-16 h-16"
       >
         <path
-          d="M40 62 C40 62 16 48 16 32 C16 24 22 18 30 18 C35 18 39 21 40 24 C41 21 45 18 50 18 C58 18 64 24 64 32 C64 48 40 62 40 62Z"
+          d="M40 18 L44 32 L58 32 L47 41 L51 55 L40 46 L29 55 L33 41 L22 32 L36 32Z"
           stroke="white"
           strokeWidth="2"
-          fill="none"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M24 38 L30 32 L36 42 L42 28 L48 38 L54 34"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
           strokeLinejoin="round"
           fill="none"
         />
-      </svg>
-    ),
-  },
-  {
-    id: "endocrinology",
-    title: "Endocrinology & Diabetes",
-    desc: "Expanding diabetes care and endocrine health programs across Pakistan.",
-    svg: (
-      <svg
-        viewBox="0 0 80 80"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-16 h-16"
-      >
         <circle
           cx="40"
-          cy="28"
-          r="10"
-          stroke="white"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M34 38 L28 58 L40 52 L52 58 L46 38"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        <path
-          d="M36 26 L38 28 L44 22"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        <circle
-          cx="28"
-          cy="50"
-          r="3"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <circle
-          cx="52"
-          cy="50"
-          r="3"
-          stroke="white"
-          strokeWidth="1.5"
-          fill="none"
-        />
-      </svg>
-    ),
-  },
-  {
-    id: "mother-child",
-    title: "Mother & Child Health",
-    desc: "Dedicated care pathways for maternal wellness and pediatric development.",
-    svg: (
-      <svg
-        viewBox="0 0 80 80"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-16 h-16"
-      >
-        <circle
-          cx="40"
-          cy="20"
+          cy="40"
           r="8"
           stroke="white"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M26 38 C26 32 32 28 40 28 C48 28 54 32 54 38 L54 52 C54 56 50 60 46 60 L34 60 C30 60 26 56 26 52Z"
-          stroke="white"
-          strokeWidth="2"
-          fill="none"
-        />
-        <circle
-          cx="33"
-          cy="42"
-          r="4"
-          stroke="white"
           strokeWidth="1.5"
           fill="none"
+          strokeDasharray="3 3"
         />
-        <path
-          d="M33 46 L33 58"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M29 50 L37 50"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    id: "biopharma",
-    title: "Biopharmaceuticals",
-    desc: "Pakistan's first cGMP biotech manufacturing facility via BF Biosciences.",
-    svg: (
-      <svg
-        viewBox="0 0 80 80"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-16 h-16"
-      >
-        <rect
-          x="28"
-          y="16"
-          width="10"
-          height="20"
-          rx="5"
-          stroke="white"
-          strokeWidth="2"
-          fill="none"
-        />
-        <rect
-          x="42"
-          y="24"
-          width="10"
-          height="20"
-          rx="5"
-          stroke="white"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M33 36 C33 44 38 50 40 54 C42 50 47 44 47 44"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <path
-          d="M28 54 C30 56 34 60 40 60 C46 60 50 56 52 54"
-          stroke="white"
-          strokeWidth="2"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <circle cx="33" cy="26" r="2" fill="white" opacity="0.6" />
-        <circle cx="47" cy="34" r="2" fill="white" opacity="0.6" />
       </svg>
     ),
   },

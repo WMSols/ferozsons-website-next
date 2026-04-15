@@ -3,6 +3,39 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+const AccentWord: React.FC<{ text: string; delay: number }> = ({
+  text,
+  delay,
+}) => (
+  <motion.span
+    className="inline-block mx-1 my-0.5"
+    initial={{ opacity: 0, y: 6 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-15% 0px" }}
+    transition={{ duration: 0.5, delay }}
+    style={{
+      background: "#ffffff",
+      borderRadius: "10px",
+      padding: "1px 12px 3px 12px",
+      boxShadow: "0 2px 10px rgba(0,0,0,0.13)",
+      whiteSpace: "nowrap", // prevents the word itself from breaking
+      verticalAlign: "middle", // aligns badge nicely with surrounding text
+    }}
+  >
+    <span
+      style={{
+        background: "linear-gradient(90deg, #1a7fc1 0%, #7ec8e3 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+        fontWeight: 700,
+      }}
+    >
+      {text}
+    </span>
+  </motion.span>
+);
+
 const StatementSection: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -11,34 +44,8 @@ const StatementSection: React.FC = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
-  const segments = [
-    { text: "Our legacy is grounded in ", accent: false },
-    { text: "integrity", accent: true },
-    {
-      text: " and reflected in the high standards we uphold across our work. We deliver ",
-      accent: false,
-    },
-    { text: "quality", accent: true },
-    {
-      text: " healthcare solutions that improve lives, guided by a ",
-      accent: false,
-    },
-    { text: "patient-first", accent: true },
-    {
-      text: " approach and a strong sense of responsibility to the communities we serve.",
-      accent: false,
-    },
-  ];
-
   return (
     <section ref={ref} className="relative py-28 bg-white overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-35"
-        style={{
-          backgroundImage: `radial-gradient(circle, #1a56db 1.5px, transparent 1.5px)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
       <motion.div
         style={{ y }}
         className="max-w-4xl mx-auto px-8 relative z-10"
@@ -52,41 +59,23 @@ const StatementSection: React.FC = () => {
         </div>
 
         <p
-          className="text-center leading-relaxed text-gray-800"
+          className="font-kaisei font-bold text-center text-gray-900 px-4 sm:px-8 md:px-0"
           style={{
-            fontSize: "clamp(1.3rem, 2.8vw, 2.2rem)",
-            fontFamily: "'Georgia', serif",
-            lineHeight: 1.7,
+            fontSize: "clamp(1.1rem, 2.5vw, 2.15rem)",
+            lineHeight: 2, // slightly more room for badges on small screens
+            maxWidth: "72ch",
+            margin: "0 auto",
           }}
         >
-          {segments.map((seg, i) =>
-            seg.accent ? (
-              <motion.span
-                key={i}
-                className="relative inline-block"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-15% 0px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <span className="relative z-10 text-[#1a56db] font-bold">
-                  {seg.text}
-                </span>
-                <motion.span
-                  className="absolute inset-x-0 bottom-0 h-[6px] bg-blue-100 rounded-sm -z-0"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 + 0.2 }}
-                  style={{ originX: 0 }}
-                />
-              </motion.span>
-            ) : (
-              <span key={i} className="text-gray-700">
-                {seg.text}
-              </span>
-            ),
-          )}
+          Our legacy is grounded in
+          <AccentWord text="integrity" delay={0.1} />
+          and reflected in the high standards we uphold across our work. We
+          deliver
+          <AccentWord text="quality" delay={0.2} />
+          healthcare solutions that improve lives, guided by a
+          <AccentWord text="patient-first" delay={0.3} />
+          approach and a strong sense of responsibility to the communities we
+          serve.
         </p>
       </motion.div>
     </section>
