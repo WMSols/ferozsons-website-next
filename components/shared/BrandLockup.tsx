@@ -8,36 +8,23 @@ interface BrandLockupProps {
 
 export default function BrandLockup({
   variant = "light",
-  size = "sm",
+  size = "lg",
   className,
 }: BrandLockupProps) {
-  const textColor = variant === "light" ? "text-white" : "text-foreground";
-  const borderColor =
-    variant === "light" ? "border-white" : "border-foreground";
+  const suffix = variant === "light" ? "light" : "dark";
 
   return (
-    <div className={cn("flex items-center gap-3", className)}>
-      <div
-        className={cn(
-          "flex shrink-0 items-center justify-center rounded-full border-2 font-serif italic",
-          borderColor,
-          textColor,
-          size === "lg" ? "h-16 w-16 text-3xl" : "h-12 w-12 text-xl",
-        )}
-      >
-        f
-      </div>
-      <div
-        className={cn(
-          "flex flex-col font-sans font-bold uppercase leading-tight tracking-wider",
-          textColor,
-          size === "lg" ? "text-xs" : "text-[10px]",
-        )}
-      >
-        <span>People</span>
-        <span>Trust</span>
-        <span>Us</span>
-      </div>
+    <div className={cn("flex items-center", className)}>
+      <img
+        src="ferozsons-f-white.png"
+        alt="Ferozsons logo"
+        className={cn("shrink-0", size === "lg" ? "h-24 w-24" : "h-20 w-20")}
+      />
+      <img
+        src="people-trust-us.png"
+        alt="People Trust Us"
+        className={cn("shrink-0", size === "lg" ? "h-24 w-24" : "h-20 w-20")}
+      />
     </div>
   );
 }

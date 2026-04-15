@@ -27,7 +27,7 @@ export default function AboutPage() {
               the first Pharmaceutical manufacturing companies in Pakistan, and
               has now entered its seventh decade of serving the cause of health
               and well-being in Pakistan and a growing number of international
-              markets
+              markets.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
               The company has emerged as one of Pakistan’s fastest-growing

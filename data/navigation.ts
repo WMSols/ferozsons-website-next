@@ -9,6 +9,10 @@ export const PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL =
 
 export const mainNavItems: NavItem[] = [
   {
+    label: "Home",
+    href: "/",
+  },
+  {
     label: "About Us",
     href: "/about",
     children: [
@@ -34,8 +38,8 @@ export const mainNavItems: NavItem[] = [
     href: "/partnerships",
   },
   {
-    label: "Newsroom",
-    href: "/newsroom",
+    label: "Global Presence",
+    href: "/global-presence",
   },
   {
     label: "Contract Manufacturing",
@@ -44,7 +48,15 @@ export const mainNavItems: NavItem[] = [
 ];
 
 export const secondaryNavItems: NavItem[] = [
-  { label: "Investors", href: "/investors" },
+  {
+    label: "Investors",
+    href: "/investors",
+    children: [
+      { label: "Investor Information", href: "/investors" },
+      { label: "Why Invest?", href: "/about/purpose" },
+      { label: "Newsroom", href: "/newsroom" },
+    ],
+  },
   { label: "Careers", href: "/careers" },
 ];
 

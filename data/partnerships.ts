@@ -71,7 +71,7 @@ export const timelineEvents = [
   },
   {
     year: "1960",
-    title: "KSE Listing",
+    title: "Listed on Karachi Stock Exchange (KSE)",
     description:
       "The first Pakistani pharmaceutical company listed on Karachi Stock Exchange (KSE).",
   },
@@ -83,13 +83,13 @@ export const timelineEvents = [
   },
   {
     year: "2006",
-    title: "First Biopharma Company",
+    title: "Pakistan’s First Biopharma Company",
     description:
       "Entered a joint venture with Bagó Group (Argentina) to establish BF Biosciences, Pakistan’s first biopharmaceutical company.",
   },
   {
     year: "2008",
-    title: "Boston Scientific Partnership",
+    title: "Distribution Partnership with Boston Scientific",
     description:
       "Secured distribution rights for advanced interventional medical devices from Boston Scientific Inc., a global industry leader.",
   },
@@ -102,13 +102,13 @@ export const timelineEvents = [
 ];
 
 export const boardMembers = [
-  { name: "Osman Khalid Waheed", title: "Chairman & CEO" },
-  { name: "Aamir Ibrahim", title: "Independent Director" },
-  { name: "Farooq Rahmatullah Qureshi", title: "Independent Director" },
-  { name: "Zulfiqar Khalid Waheed", title: "Non-Executive Director" },
-  { name: "Rabia Waheed", title: "Non-Executive Director" },
-  { name: "Naved A. Khan", title: "Independent Director" },
-  { name: "Ayesha Aziz", title: "Independent Director" },
+  { name: "Osman Khalid Waheed", title: "CEO and Director" },
+  { name: "Akhter Khalid Waheed", title: "Chairperson, Board of Directors" },
+  { name: "Amna Piracha Khan", title: "Director" },
+  { name: "Munize Azhar Piracha", title: "Director" },
+  { name: "Arshad Saeed Husain", title: "Director" },
+  { name: "Suleman Ghani", title: "Director" },
+  { name: "Shahid Anwar", title: "Director" },
 ];
 
 export const csrInitiatives = [

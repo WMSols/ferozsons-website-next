@@ -1,6 +1,5 @@
 "use client";
 
-import { articles } from "@/data/articles";
 import { timelineEvents } from "@/data/partnerships";
 import {
   heroSlides,
@@ -19,21 +18,24 @@ import LegacyBanner from "@/components/sections/LegacyBanner";
 import QuoteSection from "@/components/sections/QuoteSection";
 import TherapeuticsGrid from "../components/sections/TherapeuticsGrid";
 import { therapeuticsData } from "@/data/company-overview";
+import { useLatestNewsroomArticles } from "@/app/newsroom/hooks/useLatestNewsroomArticles";
 
 export default function HomePage() {
-  const latestArticles = articles.filter((a) => a.type === "news").slice(0, 3);
+  const { latestArticles, isLoading } = useLatestNewsroomArticles();
 
   return (
     <>
       <HeroCarousel slides={heroSlides} />
       <TherapeuticsGrid items={therapeuticsData} />
       <MissionSection {...missionData} />
-      <ArticlesGrid
-        articles={latestArticles}
-        title="Latest Articles"
-        viewAllLink="/newsroom"
-        viewAllText="View All"
-      />
+      {!isLoading && latestArticles.length > 0 && (
+        <ArticlesGrid
+          articles={latestArticles}
+          title="Latest Articles"
+          viewAllLink="/newsroom"
+          viewAllText="View All"
+        />
+      )}
       <ProductSearchSection {...productSearchData} />
       <TimelineSection
         title="Our Journey"

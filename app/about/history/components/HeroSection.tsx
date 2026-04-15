@@ -118,11 +118,10 @@ export default function HeroSection() {
             maxWidth: "1400px", // Prevents lines from getting uncomfortably wide
           }}
         >
-          From the beginning, our goal has been to take on tough health
-          challenges. This is driven by our compassion for people, commitment to
-          innovation and inclusion, service to the community, and uncompromising
-          integrity at the heart of everything we do. But we haven’t come this
-          far to only come this far.
+          Ferozsons Laboratories Limited was established in 1954 as one of the
+          first Pharmaceutical manufacturing companies in Pakistan, and has now
+          entered its seventh decade of serving the cause of health and
+          well-being in Pakistan and a growing number of international markets.
         </motion.p>
 
         <motion.p
@@ -137,8 +136,11 @@ export default function HeroSection() {
             maxWidth: "1400px",
           }}
         >
-          Explore where we’ve been and how we continue to go beyond medicine to
-          make a remarkable impact that lasts.
+          The company has emerged as one of Pakistan’s fastest-growing
+          pharmaceutical firms, recognized for delivering high-quality
+          healthcare solutions and building leading brands across key
+          therapeutic areas, including gastroenterology, hepatology, cardiology,
+          and oncology.
         </motion.p>
       </motion.div>
     </div>

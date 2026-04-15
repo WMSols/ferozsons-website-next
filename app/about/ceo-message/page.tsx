@@ -16,16 +16,19 @@ export default function CEOMessagePage() {
       <section className="bg-navy text-navy-foreground py-16 md:py-20">
         <div className="container">
           <p className="text-xs tracking-[0.2em] uppercase text-primary mb-2">
-            Leadership
+            CEO Ferozsons Laboratories Limited
           </p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">
-            Message from the CEO
+            Osman Khalid Waheed
           </h1>
         </div>
       </section>
 
       {/* 2-Column Layout */}
-      <SectionWrapper className="py-16 md:py-24" containerClassName="max-w-5xl mx-auto">
+      <SectionWrapper
+        className="py-16 md:py-24"
+        containerClassName="max-w-5xl mx-auto"
+      >
         <div className="grid md:grid-cols-[380px_1fr] lg:grid-cols-[440px_1fr] gap-12 lg:gap-16">
           {/* Portrait */}
           <div className="order-2 md:order-1">
@@ -37,19 +40,10 @@ export default function CEOMessagePage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h2 className="text-xl font-bold font-serif">{ceoBio.name}</h2>
+              {/* <h2 className="text-xl font-bold font-serif">{ceoBio.name}</h2>
               <p className="text-muted-foreground text-sm mb-3">
                 {ceoBio.title}
-              </p>
-              <a
-                href={ceoBio.linkedIn}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-              >
-                <Linkedin className="h-5 w-5" />
-                Connect on LinkedIn
-              </a>
+              </p> */}
             </div>
           </div>
 
@@ -67,14 +61,23 @@ export default function CEOMessagePage() {
                 {paragraph}
               </p>
             ))}
+            <a
+              href={ceoBio.linkedIn}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+            >
+              <Linkedin className="h-5 w-5" />
+              Connect on LinkedIn
+            </a>
 
             {/* Signature */}
-            <div className="pt-6 border-t border-border mt-8">
+            {/* <div className="pt-6 border-t border-border mt-8">
               <p className="font-serif font-bold text-lg text-foreground">
                 {ceoBio.name}
               </p>
               <p className="text-muted-foreground text-sm">{ceoBio.title}</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </SectionWrapper>

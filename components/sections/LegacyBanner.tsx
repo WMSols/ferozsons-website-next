@@ -39,7 +39,7 @@ export default function LegacyBanner({
           {showBrandLockup && (
             <BrandLockup variant="light" className="mb-8 md:mb-10" />
           )}
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-4xl">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-6xl">
             {title}
           </h2>
           <p className="mt-6 max-w-xl text-base md:text-lg font-normal leading-relaxed text-white">

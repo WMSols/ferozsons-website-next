@@ -16,8 +16,16 @@ import type { StrapiCategoriesResponse } from "@/types/strapi";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activePrimaryDropdown, setActivePrimaryDropdown] = useState<
+    string | null
+  >(null);
+  const [activeNestedDropdown, setActiveNestedDropdown] = useState<
+    string | null
+  >(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [mobileNestedDropdown, setMobileNestedDropdown] = useState<
+    string | null
+  >(null);
   const pathname = usePathname();
 
   const categoriesQuery = useQuery({
@@ -34,7 +42,7 @@ const Navbar = () => {
     if (item.label !== "Products" || !item.children?.length) return item;
 
     const hasPlaceholder = item.children.some(
-      (c) => c.label === PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL
+      (c) => c.label === PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL,
     );
     if (!hasPlaceholder) return item;
 
@@ -43,70 +51,118 @@ const Navbar = () => {
       href: `/products?category=${encodeURIComponent(cat.slug)}`,
     }));
 
-    const viewAll = item.children.filter(
-      (c) => c.label !== PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL
-    );
+    const nextChildren = item.children.map((child) => {
+      if (child.label !== PRODUCTS_DROPDOWN_PLACEHOLDER_LABEL) return child;
+      return {
+        label: "View all categories",
+        href: "/products",
+        children: dynamicChildren,
+      };
+    });
 
-    return { ...item, children: [...dynamicChildren, ...viewAll] };
+    return { ...item, children: nextChildren };
   });
 
   return (
     <header className="sticky top-0 z-50 relative px-4 pt-4 lg:px-6 lg:pt-6">
-      {/* Single white rounded bar - desktop */}
+      {/* Desktop */}
       <div className="hidden lg:block rounded-[20px] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
         <div className="flex items-center justify-between gap-8 px-8 py-4">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1F6EC9] text-white font-bold text-lg">
               F
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-xl font-bold font-serif text-[#333333] tracking-tight">FEROZSONS</span>
-              <span className="text-xs font-medium text-[#666666] tracking-[0.2em] uppercase">Laboratories Limited</span>
+              <span className="text-xl font-bold font-serif text-[#333333] tracking-tight">
+                FEROZSONS
+              </span>
+              <span className="text-xs font-medium text-[#666666] tracking-[0.2em] uppercase">
+                Laboratories Limited
+              </span>
             </div>
           </Link>
 
-          {/* Primary nav - center-left with 32px gap */}
           <nav className="flex items-center gap-8 flex-1 justify-start pl-8">
             {navItems.map((item) => (
               <div
                 key={item.href}
                 className="relative"
-                onMouseEnter={() => item.children && setActiveDropdown(item.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() =>
+                  item.children && setActivePrimaryDropdown(item.label)
+                }
+                onMouseLeave={() => {
+                  setActivePrimaryDropdown(null);
+                  setActiveNestedDropdown(null);
+                }}
               >
                 <Link
                   href={item.href}
                   className={cn(
                     "flex items-center gap-1 text-base font-medium text-[#5C85A6] transition-colors hover:opacity-80",
-                    pathname === item.href && "opacity-100"
+                    pathname === item.href && "opacity-100",
                   )}
                 >
                   {item.label}
                   {item.children && <ChevronDown className="h-3 w-3" />}
                 </Link>
 
-                {/* Dropdown */}
-                {item.children && activeDropdown === item.label && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2">
-                    <div className="bg-[#FFFFFF] border border-[#CCCCCC] rounded-lg shadow-lg p-6 min-w-[280px]">
+                {item.children && activePrimaryDropdown === item.label && (
+                  <div className="absolute top-full left-0 pt-2 z-50">
+                    <div className="bg-[#FFFFFF] border border-[#CCCCCC] rounded-lg shadow-lg p-6 min-w-[240px]">
                       <p className="text-xs font-semibold text-[#666666] uppercase tracking-wider mb-3">
-                        Categories
+                        {item.label}
                       </p>
                       <div className="grid gap-1">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={cn(
-                              "block px-3 py-2 text-sm rounded-md transition-colors hover:bg-gray-100",
-                              child.label === "View All Products" && "font-semibold text-[#5C85A6] mt-2 border-t border-[#CCCCCC] pt-3"
-                            )}
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
+                        {item.children.map((child) => {
+                          const nestedKey = `${item.label}.${child.label}`;
+                          const hasNestedChildren =
+                            Array.isArray(child.children) &&
+                            child.children.length > 0;
+
+                          return hasNestedChildren ? (
+                            <div
+                              key={`${child.label}-${child.href}`}
+                              className="relative"
+                              onMouseEnter={() =>
+                                setActiveNestedDropdown(nestedKey)
+                              }
+                              onMouseLeave={() => setActiveNestedDropdown(null)}
+                            >
+                              <button className="flex items-center justify-between w-full px-3 py-2 text-sm rounded-md hover:bg-gray-100">
+                                {child.label}
+                                <ChevronDown className="h-3 w-3 ml-2" />
+                              </button>
+                              {activeNestedDropdown === nestedKey && (
+                                <div className="absolute left-full top-0 pl-2">
+                                  <div className="bg-[#FFFFFF] border border-[#CCCCCC] rounded-lg shadow-lg p-4 min-w-[200px]">
+                                    {child.children?.map((grandChild) => (
+                                      <Link
+                                        key={`${grandChild.label}-${grandChild.href}`}
+                                        href={grandChild.href}
+                                        className="block px-3 py-2 text-sm rounded-md transition-colors hover:bg-gray-100"
+                                        onClick={() => {
+                                          setActivePrimaryDropdown(null);
+                                          setActiveNestedDropdown(null);
+                                        }}
+                                      >
+                                        {grandChild.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <Link
+                              key={`${child.label}-${child.href}`}
+                              href={child.href}
+                              className="block px-3 py-2 text-sm rounded-md transition-colors hover:bg-gray-100"
+                              onClick={() => setActivePrimaryDropdown(null)}
+                            >
+                              {child.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -115,34 +171,36 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Secondary nav + separator + search - right */}
-          <div className="flex items-center gap-8 shrink-0">
+          <div className="flex items-center gap-4 shrink-0">
             {secondaryNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-base font-medium text-[#5C85A6] transition-colors hover:opacity-80"
+                className="text-sm font-medium text-[#5C85A6] transition-colors hover:opacity-80"
               >
                 {item.label}
               </Link>
             ))}
-            <div className="h-5 w-px bg-[#CCCCCC]" aria-hidden />
-            <button className="p-1.5 rounded-full transition-colors hover:opacity-80 text-[#5C85A6]" aria-label="Search">
+            <button className="text-[#5C85A6] hover:opacity-80">
               <Search className="h-5 w-5" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile: compact bar with hamburger */}
+      {/* Mobile */}
       <div className="flex lg:hidden items-center justify-between rounded-[20px] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.08)] px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1F6EC9] text-white font-bold text-base">
             F
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="text-base font-bold font-serif text-[#333333]">FEROZSONS</span>
-            <span className="text-[10px] font-medium text-[#666666] tracking-widest uppercase">Laboratories Limited</span>
+            <span className="text-base font-bold font-serif text-[#333333]">
+              FEROZSONS
+            </span>
+            <span className="text-[10px] font-medium text-[#666666] tracking-widest uppercase">
+              Laboratories Limited
+            </span>
           </div>
         </Link>
         <button
@@ -150,11 +208,14 @@ const Navbar = () => {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </button>
       </div>
 
-      {/* Mobile menu: overlay so it doesn't push content down */}
       {mobileOpen && (
         <>
           <button
@@ -165,62 +226,160 @@ const Navbar = () => {
           />
           <div className="lg:hidden absolute top-full left-0 right-0 mt-2 z-50 px-4">
             <div className="rounded-[20px] bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.08)] border border-[#CCCCCC]/30 overflow-hidden">
-          <div className="px-4 py-4 space-y-1">
-            {navItems.map((item) => (
-              <div key={item.href}>
-                {item.children ? (
-                  <>
-                    <button
-                      className="flex items-center justify-between w-full py-3 text-base font-medium text-[#5C85A6]"
-                      onClick={() => setMobileDropdown(mobileDropdown === item.label ? null : item.label)}
-                    >
-                      {item.label}
-                      <ChevronDown
-                        className={cn(
-                          "h-4 w-4 transition-transform",
-                          mobileDropdown === item.label && "rotate-180"
+              <div className="px-4 py-4 space-y-1">
+                {navItems.map((item) => (
+                  <div key={item.href}>
+                    {item.children ? (
+                      <>
+                        <button
+                          className="flex items-center justify-between w-full py-3 text-base font-medium text-[#5C85A6]"
+                          onClick={() =>
+                            setMobileDropdown(
+                              mobileDropdown === item.label ? null : item.label,
+                            )
+                          }
+                        >
+                          {item.label}
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 transition-transform",
+                              mobileDropdown === item.label && "rotate-180",
+                            )}
+                          />
+                        </button>
+                        {mobileDropdown === item.label && (
+                          <div className="pl-4 pb-2 space-y-1">
+                            {item.children.map((child) => {
+                              const nestedKey = `${item.label}.${child.label}`;
+                              const hasNestedChildren =
+                                Array.isArray(child.children) &&
+                                child.children.length > 0;
+
+                              return hasNestedChildren ? (
+                                <div key={`${child.label}-${child.href}`}>
+                                  <button
+                                    className="flex items-center justify-between w-full py-2 text-sm text-[#5C85A6] hover:opacity-80"
+                                    onClick={() =>
+                                      setMobileNestedDropdown(
+                                        mobileNestedDropdown === nestedKey
+                                          ? null
+                                          : nestedKey,
+                                      )
+                                    }
+                                  >
+                                    {child.label}
+                                    <ChevronDown
+                                      className={cn(
+                                        "h-4 w-4 transition-transform",
+                                        mobileNestedDropdown === nestedKey &&
+                                          "rotate-180",
+                                      )}
+                                    />
+                                  </button>
+                                  {mobileNestedDropdown === nestedKey && (
+                                    <div className="pl-4 pb-2 space-y-1">
+                                      {child.children?.map((grandChild) => (
+                                        <Link
+                                          key={`${grandChild.label}-${grandChild.href}`}
+                                          href={grandChild.href}
+                                          className="block py-2 text-sm text-[#5C85A6] hover:opacity-80"
+                                          onClick={() => {
+                                            setMobileOpen(false);
+                                            setMobileDropdown(null);
+                                            setMobileNestedDropdown(null);
+                                          }}
+                                        >
+                                          {grandChild.label}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                              ) : (
+                                <Link
+                                  key={`${child.label}-${child.href}`}
+                                  href={child.href}
+                                  className="block py-2 text-sm text-[#5C85A6] hover:opacity-80"
+                                  onClick={() => {
+                                    setMobileOpen(false);
+                                    setMobileDropdown(null);
+                                    setMobileNestedDropdown(null);
+                                  }}
+                                >
+                                  {child.label}
+                                </Link>
+                              );
+                            })}
+                          </div>
                         )}
-                      />
-                    </button>
-                    {mobileDropdown === item.label && (
-                      <div className="pl-4 pb-2 space-y-1">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="block py-2 text-sm text-[#5C85A6] hover:opacity-80"
-                            onClick={() => { setMobileOpen(false); setMobileDropdown(null); }}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="block py-3 text-base font-medium text-[#5C85A6] hover:opacity-80"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
                     )}
-                  </>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="block py-3 text-base font-medium text-[#5C85A6] hover:opacity-80"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )}
+                  </div>
+                ))}
+
+                <div className="border-t border-[#CCCCCC]/50 pt-3 mt-3 space-y-1">
+                  {secondaryNavItems.map((item) => (
+                    <div key={item.href}>
+                      {item.children ? (
+                        <>
+                          <button
+                            className="flex items-center justify-between w-full py-2 text-sm font-medium text-[#5C85A6]"
+                            onClick={() =>
+                              setMobileDropdown(
+                                mobileDropdown === item.label
+                                  ? null
+                                  : item.label,
+                              )
+                            }
+                          >
+                            {item.label}
+                            <ChevronDown
+                              className={cn(
+                                "h-4 w-4 transition-transform",
+                                mobileDropdown === item.label && "rotate-180",
+                              )}
+                            />
+                          </button>
+                          {mobileDropdown === item.label && (
+                            <div className="pl-4 pb-2 space-y-1">
+                              {item.children.map((child) => (
+                                <Link
+                                  key={`${child.label}-${child.href}`}
+                                  href={child.href}
+                                  className="block py-2 text-sm text-[#5C85A6] hover:opacity-80"
+                                  onClick={() => {
+                                    setMobileOpen(false);
+                                    setMobileDropdown(null);
+                                    setMobileNestedDropdown(null);
+                                  }}
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className="block py-2 text-sm text-[#5C85A6] hover:opacity-80"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-            <div className="border-t border-[#CCCCCC]/50 pt-3 mt-3 space-y-1">
-              {secondaryNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block py-2 text-sm text-[#5C85A6] hover:opacity-80"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
             </div>
           </div>
         </>

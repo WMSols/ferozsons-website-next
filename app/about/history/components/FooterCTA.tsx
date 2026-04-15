@@ -31,7 +31,7 @@ export default function FooterCTA() {
           letterSpacing: "-0.01em",
         }}
       >
-        We&apos;re on a mission
+        Our Commitment.
       </h2>
       <p
         style={{
@@ -42,8 +42,8 @@ export default function FooterCTA() {
           lineHeight: 1.65,
         }}
       >
-        Learn more about our commitments to our patients, our communities and a
-        strong financial future.
+        Learn more about our commitment to advancing patient care and supporting
+        the communities we serve.
       </p>
       <div
         style={{
@@ -55,16 +55,16 @@ export default function FooterCTA() {
       >
         {[
           {
-            label: "Our pipeline",
-            href: "/newsroom",
+            label: "Our Partnerships",
+            href: "/partnerships",
           },
           {
-            label: "Our strategy",
-            href: "/newsroom",
+            label: "Our Purpose",
+            href: "/about/purpose",
           },
           {
-            label: "Our responsibility",
-            href: "/newsroom",
+            label: "Our Responsibility",
+            href: "/csr",
           },
         ].map((link) => (
           <a

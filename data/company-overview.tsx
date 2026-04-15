@@ -76,10 +76,14 @@ export const legacyData = {
   backgroundImage: "/legacy-bg.png",
   title: (
     <>
-      Our legacy is built on{" "}
-      <span className="text-hero-accent">integrity,</span>{" "}
-      <span className="text-hero-accent">quality,</span> and{" "}
-      <span className="text-hero-accent">patient-first</span> care.
+      <span className="whitespace-nowrap">
+        Our legacy is built on&nbsp;
+        <span className="text-hero-accent">integrity</span>
+        <span className="text-white">,</span>
+      </span>
+      <br />
+      <span className="text-hero-accent">quality</span>
+      and <span className="text-hero-accent">patient-first</span> care.
     </>
   ),
   description:

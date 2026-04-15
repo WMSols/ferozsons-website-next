@@ -40,6 +40,7 @@ export default function ArticlesGrid({
       linkHref={viewAllLink ?? "/newsroom"}
     />
   ));
+  console.log(articles);
 
   return (
     <section className="bg-secondary py-20">
