@@ -1,10 +1,14 @@
+"use client";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 type PartnerBlock = {
   name: string;
   paragraphs: string[];
   bullets?: string[];
   cta: string;
+  ctaHref: string;
 };
 
 const partnerBlocks: PartnerBlock[] = [
@@ -24,6 +28,7 @@ const partnerBlocks: PartnerBlock[] = [
       "Women's Health",
     ],
     cta: "Learn more about Boston Scientific",
+    ctaHref: "https://www.bostonscientific.com/en-US/home.html",
   },
   {
     name: "NIHON KOHDEN",
@@ -39,6 +44,7 @@ const partnerBlocks: PartnerBlock[] = [
       "Critical care monitoring technologies",
     ],
     cta: "Learn more about NIHON KOHDEN",
+    ctaHref: "https://www.nihonkohden.com/",
   },
   {
     name: "Butterfly Network",
@@ -57,19 +63,29 @@ const partnerBlocks: PartnerBlock[] = [
       "Point-of-Care Diagnostics",
     ],
     cta: "Learn more about Butterfly Network",
+    ctaHref: "https://www.butterflynetwork.com/",
   },
 ];
 
 function PartnerCard({
   partner,
   fullWidth = false,
+  delay = 0,
 }: {
   partner: PartnerBlock;
   fullWidth?: boolean;
+  delay?: number;
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-5% 0px" });
+
   return (
-    <article
+    <motion.article
+      ref={ref}
       className={`rounded-[20px] bg-[#1f1f1f] p-8 sm:p-10 flex flex-col ${fullWidth ? "md:col-span-2" : ""}`}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay }}
     >
       <h3 className="text-[28px] font-bold leading-tight text-white sm:text-[32px] md:text-[36px]">
         {partner.name}
@@ -99,22 +115,25 @@ function PartnerCard({
 
       <div className="mt-auto pt-10">
         <Link
-          href="/partnerships"
+          href={partner.ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex rounded-[10px] border border-[#444444] bg-[#2a2a2a] px-6 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#3a3a3a]"
         >
           {partner.cta}
         </Link>
       </div>
-    </article>
+    </motion.article>
   );
 }
+
 export function PartnerDetails() {
   return (
     <section className="bg-[#2a2a2a] px-4 py-8 sm:py-10 md:py-12">
       <div className="mx-auto grid max-w-300 grid-cols-1 gap-3 md:grid-cols-2">
-        <PartnerCard partner={partnerBlocks[0]} />
-        <PartnerCard partner={partnerBlocks[1]} />
-        <PartnerCard partner={partnerBlocks[2]} fullWidth />
+        <PartnerCard partner={partnerBlocks[0]} delay={0} />
+        <PartnerCard partner={partnerBlocks[1]} delay={0.1} />
+        <PartnerCard partner={partnerBlocks[2]} fullWidth delay={0.2} />
       </div>
     </section>
   );

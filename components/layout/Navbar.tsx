@@ -128,7 +128,7 @@ const Navbar = () => {
                               }
                               onMouseLeave={() => setActiveNestedDropdown(null)}
                             >
-                              <button className="flex items-center justify-between w-full px-3 py-2 text-sm rounded-md hover:bg-gray-100">
+                              <button className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm text-[#333333] hover:bg-gray-100">
                                 {child.label}
                                 <ChevronDown className="h-3 w-3 ml-2" />
                               </button>
@@ -139,7 +139,7 @@ const Navbar = () => {
                                       <Link
                                         key={`${grandChild.label}-${grandChild.href}`}
                                         href={grandChild.href}
-                                        className="block px-3 py-2 text-sm rounded-md transition-colors hover:bg-gray-100"
+                                        className="block rounded-md px-3 py-2 text-sm text-[#333333] transition-colors hover:bg-gray-100"
                                         onClick={() => {
                                           setActivePrimaryDropdown(null);
                                           setActiveNestedDropdown(null);
@@ -156,7 +156,7 @@ const Navbar = () => {
                             <Link
                               key={`${child.label}-${child.href}`}
                               href={child.href}
-                              className="block px-3 py-2 text-sm rounded-md transition-colors hover:bg-gray-100"
+                              className="block rounded-md px-3 py-2 text-sm text-[#333333] transition-colors hover:bg-gray-100"
                               onClick={() => setActivePrimaryDropdown(null)}
                             >
                               {child.label}

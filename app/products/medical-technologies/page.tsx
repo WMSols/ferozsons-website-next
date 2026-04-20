@@ -17,7 +17,10 @@ export default function MedicalTechnologiesPage() {
   return (
     <div className="bg-[#1a1a1a] text-white">
       <Navbar />
-      <Hero />
+      {/* 200vh = 100vh for the hero to be visible + 100vh of scroll before Statement arrives */}
+      <div className="relative h-[200vh]">
+        <Hero />
+      </div>
       <Statement />
       <TrustedPartners />
       <PartnerDetails />
